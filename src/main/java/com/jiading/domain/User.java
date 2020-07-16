@@ -6,12 +6,17 @@ import java.io.Serializable;
  * 用户实体类
  */
 public class User implements Serializable {
+    /*
+    1. 管理员
+    2. 普通用户
+     */
+    private static final int MANAGER = 0;
+    private static final int NORMALUSER = 1;
     private int uid;//用户id
     private String username;//用户名，账号
     private String password;//密码
-    private String birthday;//出生日期
-    private String sex;//男或女
-    private String telephone;//手机号
+    private String headshot;//头像
+    private int privilege;//权限
     private String email;//邮箱
     private String status;//激活状态，Y代表激活，N代表未激活
     private String code;//激活码（要求唯一）
@@ -22,28 +27,39 @@ public class User implements Serializable {
     public User() {
     }
 
-    /**
-     * 有参构方法
-     * @param uid
-     * @param username
-     * @param password
-     * @param birthday
-     * @param sex
-     * @param telephone
-     * @param email
-     * @param status
-     * @param code
-     */
-    public User(int uid, String username, String password,  String birthday, String sex, String telephone, String email, String status, String code) {
+    public User(int uid, String username, String password, String headshot, int privilege, String email, String status, String code) {
         this.uid = uid;
         this.username = username;
         this.password = password;
-        this.birthday = birthday;
-        this.sex = sex;
-        this.telephone = telephone;
+        this.headshot = headshot;
+        this.privilege = privilege;
         this.email = email;
         this.status = status;
         this.code = code;
+    }
+
+    public static int getMANAGER() {
+        return MANAGER;
+    }
+
+    public static int getNORMALUSER() {
+        return NORMALUSER;
+    }
+
+    public String getHeadshot() {
+        return headshot;
+    }
+
+    public void setHeadshot(String headshot) {
+        this.headshot = headshot;
+    }
+
+    public int getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(int privilege) {
+        this.privilege = privilege;
     }
 
     public int getUid() {
@@ -70,30 +86,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
 
     public String getEmail() {
         return email;

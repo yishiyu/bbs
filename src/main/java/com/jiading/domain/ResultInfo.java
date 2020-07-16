@@ -12,6 +12,7 @@ public class ResultInfo implements Serializable {
 
     //无参构造方法
     public ResultInfo() {
+        ;
     }
     public ResultInfo(boolean flag) {
         this.flag = flag;
