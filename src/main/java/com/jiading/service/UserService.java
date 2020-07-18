@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public interface UserService {
 
-    boolean regist(User user);
+    boolean register(User user);
 
-    boolean active(String code);
+    boolean active(String code,String username);
 
     User login(User user);
 }

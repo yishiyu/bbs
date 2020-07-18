@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
     @Select("select * from user where username=#{user}")
-    public User findByUsername(User user);
+    public User findByUsername(@Param("user")String username);
 
-    @Insert("insert into user(username,password,head_portrait,super_admin,email,status,code)values(#{username},#{password},#{head_portrait},#{super_admin},#{email},#{status},#{code})")
+    @Insert("insert into user(username,password,head_portrait,admin_admin,email,status,code)values(#{username},#{password},#{head_portrait},#{admin_admin},#{email},#{status},#{code})")
     public void saveUser(User user);
 
     @Select("select * from user where code=#{code}")
@@ -24,4 +24,7 @@ public interface UserDao {
 
     @Select("select * from user where username=#{username} and password=#{password}")
     User findByUsernameAndPassword(User user);
+
+    @Select("select * from user where code=#{code} and username=#{username}")
+    User findByCodeAndUsername(@Param("code") String code, @Param("username") String username);
 }

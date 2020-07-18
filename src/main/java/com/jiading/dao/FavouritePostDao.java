@@ -8,14 +8,16 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
+import java.util.List;
+
 
 @Repository
 public interface FavouritePostDao {
-    @Select("select * from FAVORITE_RID where and uid=#{uid}")
-    public FavoritePost findByRidAndUid(@Param("uid") Integer uid);
+    @Select("select * from FAVORITE_PID where uid=#{uid}")
+    public List<FavoritePost> findByUid(@Param("uid") Integer uid);
 
-    @Select("select count(*) from FAVORITE_RID where uid=#{uid}")
+
+    @Select("select count(*) from FAVORITE_PID where uid=#{uid}")
     public int findCount(@Param("uid") Integer uid);
 
     /**
@@ -25,6 +27,9 @@ public interface FavouritePostDao {
     * @Author: JiaDing
     * @Date: 2020/7/18
     */
-    @Update("insert into FAVORITE_RID values(#{uid},#{rid},#{date})")
-    void add(@Param("uid") Integer uid,@Param("rid") Integer rid, @Param("date") String date);
+    @Update("insert into FAVORITE_PID('UID','PID','TIME') values(#{uid},#{pid},#{date})")
+    void add(@Param("uid") Integer uid,@Param("pid") Integer pid, @Param("date") String date);
+
+    @Select("select * from FAVORITE_PID where uid=#{uid} and pid=#{pid}")
+    public FavoritePost findByPidAndUid(@Param("uid")int uid, @Param("pid") int pid);
 }

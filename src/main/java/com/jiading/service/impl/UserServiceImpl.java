@@ -18,9 +18,9 @@ public class UserServiceImpl implements UserService {
     注册用户
      */
     @Override
-    public boolean regist(User user) {
+    public boolean register(User user) {
         //1.根据用户名查询用户对象
-        User byUsername = userDao.findByUsername(user);
+        User byUsername = userDao.findByUsername(user.getUsername());
         if (byUsername != null) {
             //用户名存在，注册失败
             return false;
@@ -32,16 +32,16 @@ public class UserServiceImpl implements UserService {
             user.setStatus("N");
             userDao.saveUser(user);
             //发送激活邮件
-            String context = "<a href='http://localhost/travel/user/active?code=" + user.getCode() + "'>点击激活【黑马旅游网】</a>";
+            String context = "<a href='http://localhost/travel/user/active?code=" + user.getCode() + "&username="+byUsername+">点击激活【黑马旅游网】</a>";
             MailUtils.sendMail(user.getEmail(),context,"激活邮件");
             return true;
         }
     }
 
     @Override
-    public boolean active(String code) {
+    public boolean active(String code,String username) {
         //1.根据激活码查询用户对象
-        User user=userDao.findByCode(code);
+        User user=userDao.findByCodeAndUsername(code,username);
         //2.调用dao的修改激活状态的方法
         if(user!=null){
             userDao.updateStatus(user);
