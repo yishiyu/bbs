@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+    <router-link>
+      <div></div>
+    </router-link>
+  </div>
+</template>
+<style lang="scss" scoped></style>
