@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class FavoriteUser implements Serializable {
     private User likedUser;//旅游线路对象
     private String date;//收藏时间
-    private User user;//所属用户
+    private int uid;//所属用户
 
     /**
      * 无参构造方法
@@ -16,10 +16,10 @@ public class FavoriteUser implements Serializable {
     public FavoriteUser() {
     }
 
-    public FavoriteUser(User likedUser, String date, User user) {
+    public FavoriteUser(User likedUser, String date, int uid) {
         this.likedUser = likedUser;
         this.date = date;
-        this.user = user;
+        this.uid = uid;
     }
 
     public User getLikedUser() {
@@ -38,11 +38,11 @@ public class FavoriteUser implements Serializable {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 }

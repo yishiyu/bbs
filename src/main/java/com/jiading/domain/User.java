@@ -10,7 +10,7 @@ public class User implements Serializable {
     private String username;//用户名，账号
     private String password;//密码
     private String head_portrait;//头像
-    private boolean super_admin;//是否是特权用户，true为特权用户
+    private boolean admin_admin;//是否是特权用户，true为特权用户
     private String email;//邮箱
     private String status;//激活状态，Y代表激活，N代表未激活
     private String code;//激活码（要求唯一）
@@ -20,7 +20,7 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.head_portrait = head_portrait;
-        this.super_admin = super_admin;
+        this.admin_admin = super_admin;
         this.email = email;
         this.status = status;
         this.code = code;
@@ -64,12 +64,12 @@ public class User implements Serializable {
         this.head_portrait = head_portrait;
     }
 
-    public boolean isSuper_admin() {
-        return super_admin;
+    public boolean isAdmin_admin() {
+        return admin_admin;
     }
 
-    public void setSuper_admin(boolean super_admin) {
-        this.super_admin = super_admin;
+    public void setAdmin_admin(boolean admin_admin) {
+        this.admin_admin = admin_admin;
     }
 
     public String getEmail() {

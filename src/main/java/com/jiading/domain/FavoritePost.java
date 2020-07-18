@@ -6,9 +6,17 @@ import java.io.Serializable;
  * 收藏实体类,收藏帖子
  */
 public class FavoritePost implements Serializable {
-    private Post post;//旅游线路对象
+    private Post post;//帖子对象
     private String date;//收藏时间
-    private User user;//所属用户
+    private int uid;//所属用户
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
 
     /**
      * 无参构造方法
@@ -16,10 +24,10 @@ public class FavoritePost implements Serializable {
     public FavoritePost() {
     }
 
-    public FavoritePost(Post post, String date, User user) {
+    public FavoritePost(Post post, String date, int uid) {
         this.post = post;
         this.date = date;
-        this.user = user;
+        this.uid = uid;
     }
 
     public Post getPost() {
@@ -38,11 +46,5 @@ public class FavoritePost implements Serializable {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
