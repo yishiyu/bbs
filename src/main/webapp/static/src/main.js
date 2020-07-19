@@ -10,7 +10,9 @@ Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
-
+import moment from "moment"; //导入文件
+Vue.prototype.$moment = moment; //赋值使用
+moment.locale("zh-cn"); //国际化，中文
 new Vue({
   router,
   store,

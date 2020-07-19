@@ -1,14 +1,23 @@
 <template>
-  <b-row id="floor">
-    <!--楼层用户信息-->
-    <b-col md="2" id="user">
-      <div style="text-align: left;">
-        <img src="http://gittub.cc/small2.png" alt="" />
-      </div>
-    </b-col>
-    <b-col md="10" id="content">
-      <div>
-        <p>{{ content.text }}</p>
+  <b-row>
+    <b-col>
+      <div class="comment">
+        <b-row>
+          <b-col md="7">
+            <div class="userBox">
+              <img src="../../assets/logo.png" class="icon" alt="" />
+              {{ content.userName }}
+            </div>
+          </b-col>
+          <b-col md="5">
+            {{ content.time }}
+          </b-col>
+        </b-row>
+        <b-row class="textBox">
+          <p>
+            {{ content.comment }}
+          </p>
+        </b-row>
       </div>
     </b-col>
   </b-row>
@@ -18,32 +27,30 @@ export default {
   props: {
     content: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {
+          userName: "test",
+          time: "2020.7.20",
+          iconUrl: "../../assets/logo.png",
+          comment: "这是一条评论"
+        };
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-#user {
-  border: 0.5px solid gray;
-  background-color: bisque;
-  min-height: 100px;
-  & img {
-    height: 5rem;
-    width: 5rem;
-  }
-}
+.comment {
+  margin: 10px;
+  border-bottom: 1px lightgray ridge;
+  .userBox {
+    float: left;
 
-#content {
-  border-bottom: 0.5px solid grey;
-}
-@media (max-width: 768px) {
-  #user img {
-    height: 16px;
-    width: 16px;
+    .icon {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
   }
-}
-.col {
-  border: 1px solid;
 }
 </style>

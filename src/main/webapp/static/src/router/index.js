@@ -40,7 +40,11 @@ const routes = [
     redirect: "/block/:block_id/1"
   },
   {
-    path: "/userHome/:user_id",
+    path: "/userHome",
+    redirect: "/userHome/profile"
+  },
+  {
+    path: "/userHome",
     name: "userhome",
     component: () => import("../components/userHome/userhome"),
     children: [
@@ -48,9 +52,15 @@ const routes = [
         path: "profile",
         name: "profile",
         component: () => import("../components/userHome/profile")
+      },
+      {
+        path: "posts",
+        name: "posts",
+        component: () => import("../components/userHome/posts")
       }
     ]
   },
+
   {
     path: "/login",
     name: "login",

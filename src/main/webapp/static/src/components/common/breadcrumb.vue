@@ -1,5 +1,7 @@
 <template>
-  <b-breadcrumb style="padding:0px;margin:0" :items="items"></b-breadcrumb>
+  <b-row>
+    <b-breadcrumb id="bread" :items="items"></b-breadcrumb>
+  </b-row>
 </template>
 <script>
 export default {
@@ -32,3 +34,10 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+#bread {
+  padding: 0px;
+  margin: 0px;
+  background-color: $background-color;
+}
+</style>
