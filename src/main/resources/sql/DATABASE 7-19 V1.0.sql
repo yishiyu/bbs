@@ -13,14 +13,13 @@ CREATE TABLE IF NOT EXISTS BLOCKS(
 `BID` INT NOT NULL AUTO_INCREMENT,
 `BLOCKNAME` VARCHAR(50) DEFAULT NULL,
 `LOGO` INT NOT NULL,
-`DESCRIBE` TEXT NOT NULL DEFAULT '这是一个版块',
 CONSTRAINT FOREIGN KEY(`LOGO`) REFERENCES IMAGES(`IID`),
 PRIMARY KEY(`BID`)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS USER(
 `UID` INT NOT NULL AUTO_INCREMENT,
-`USERNAME` VARCHAR(50) DEFAULT '我是一只小白兔',
+`USERNAME` VARCHAR(50) DEFAULT '未设置昵称！！',
 `PASSWORD` VARCHAR(50) NOT NULL,
 `EMAIL` VARCHAR(50) NOT NULL,
 `HEAD_PORTRAIT` INT DEFAULT 1,
@@ -39,11 +38,10 @@ CREATE TABLE IF NOT EXISTS POSTS(
 `TITLE` VARCHAR(100) NOT NULL,
 `ABSTRACT` VARCHAR(1000) NOT NULL,
 `CONTENT` TEXT DEFAULT NULL,
-`IMAGE` INT DEFAULT NULL,
 `TIME` DATETIME DEFAULT '9999-12-31 23:59:59',
 `SHOW` TINYINT(1) DEFAULT 1,
 `VIEW` INT DEFAULT 0,
-`liked` INT DEFAULT 0,
+`LIKED` INT DEFAULT 0,
 CONSTRAINT FOREIGN KEY(`UID`) REFERENCES USER(`UID`),
 CONSTRAINT FOREIGN KEY(`BID`) REFERENCES BLOCKS(`BID`),
 CONSTRAINT FOREIGN KEY(`IMAGE`) REFERENCES IMAGES(`IID`),
@@ -83,22 +81,32 @@ PRIMARY KEY(`FPID`)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 INSERT INTO IMAGES (`URL`) VALUES
-('https://cn.bing.com/images/search?view=detailV2&ccid=C%2bSKFNdu&id=A3F5C2DC518FFBA1060C4A2FBD4A260E6900302F&thid=OIP.C-SKFNduJ5PG2Jmb6deBrwAAAA&mediaurl=https%3a%2f%2fpic3.zhimg.com%2f50%2fv2-e2361d82ce7465808260f87bed4a32d0_qhd.jpg&exph=225&expw=225&q=%e5%8c%bf%e5%90%8d%e7%94%a8%e6%88%b7&simid=608020944948167850&ck=3DFD110DB22A4AC10C207C54CA30FF2F&selectedIndex=24');
+('https://pic3.zhimg.com/50/v2-e2361d82ce7465808260f87bed4a32d0_qhd.jpg');
+('http://qdnhdgyix.bkt.clouddn.com/111')
+('http://qdnhdgyix.bkt.clouddn.com/222')
+('http://qdnhdgyix.bkt.clouddn.com/333')
+('http://qdnhdgyix.bkt.clouddn.com/444')
 
 INSERT INTO BLOCKS (`BLOCKNAME`, `LOGO`) VALUES
-('今天吃什么', 1),
-('今天穿什么', 2);
+('美食', 1),
+('书籍', 1),
+('体育', 1),
+('财经', 1),
+('政治', 1),
+('学习', 1);
 
-INSERT INTO USER (`USERNAME`, `PASSWORD`, `EMAIL`, `HEAD_PORTRAIT`, `ADMIN_PERMISSION`, `STATUS`, `CODE`) VALUES
-('Administrator', SHA1('123456'), 'admin@stu.xjtu.edu.cn', 1, 1, 'Y', 'QWERTYUIOP'),
-('Normal1', SHA1('888888'), 'jiucai1@stu.xjtu.edu.cn', 2, 0, 'Y', 'ASDFGHJKL'),
-('Normal2', SHA1('654321'), 'jiucai2@stu.xjtu.edu.cn', 1, 0, 'N', 'ZXCVBNM');
+INSERT INTO USER (`USERNAME`, `PASSWORD`, `EMAIL`, `HEAD_PORTRAIT`, `ADMIN_PERMISSION`, `STATUS`, `CODE`, `COMMENT`) VALUES
+('狗管理一号', SHA1('12345678'), '1146186018@qq.com', 2, 1, 'Y', 'QWER', '虽千万人吾亦往矣'),
+('狗管理二号', SHA1('87654321'), '814384981@qq.com', 3, 1, 'Y', 'tyui', '海不邀我自来也！！！'),
+('贾丁', SHA1('qwertyui'), '814384981@qq.com', 4, 0, 'Y', '1284', '别和我闹了'),
+('毕展语', SHA1('11111111'), '814384981@qq.com', 1, 0, 'Y', '1k4g', '让我们一起大喊——666！'),
+('李泽宇', SHA1('12345679'), '814384981@qq.com', 1, 0, 'N', 's8cr', '海上升明月');
 
-INSERT INTO POSTS (`UID`, `BID`, `TITLE`, `ABSTRACT`, `CONTENT`, `IMAGE`, `TIME`, `SHOW`, `VIEW`)VALUES
-(1, 1, '今天中午吃榴莲螺蛳粉', '恶心人 ', '想来想去也不知道今天中午吃什么，于是我灵机一动，不如今天大家中午吃榴莲螺蛳粉吧！', NULL, '2020-7-16 14:05:20', 1, 20),
+INSERT INTO POSTS (`UID`, `BID`, `TITLE`, `ABSTRACT`, `CONTENT`, `IMAGE`, `TIME`, `SHOW`, `VIEW`, `LIKED`)VALUES
+(1, 1, '给大家介绍学校周边好吃的', '学校 周边 美食', '想来想去也不知道今天中午吃什么，于是我灵机一动，不如今天大家中午吃榴莲螺蛳粉吧！', NULL, '2020-7-16 14:05:20', 1, 20, 3),
 (2, 1, '今天晚上吃KFC', '星期四 开封菜 优惠', '今天晚上大家一起去吃开封菜好啦！！今天是疯狂星期四哦~', 2, '2020-7-16 15:05:20', 1, 25),
-(2, 1, '今天吃夜宵吗', '夜宵 饿死了', '没赶上前两波，只能吃夜宵了……', 1, '2020-7-16 20:05:20', 0, 14),
-(2, 1, '今天吃夜宵吗 写错了', '夜宵 饿死了', '没赶上前两波，只能吃夜宵了……', NULL, '2020-7-16 20:05:20', 0, 0);
+(3, 1, '今天吃夜宵吗', '夜宵 饿死了', '没赶上前两波，只能吃夜宵了……', 1, '2020-7-16 20:05:20', 0, 14),
+(4, 1, '今天吃夜宵吗 写错了', '夜宵 饿死了', '没赶上前两波，只能吃夜宵了……', NULL, '2020-7-16 20:05:20', 0, 0);
 
 INSERT INTO REPLY (`UID`, `PID`, `CONTENT`, `TIME`, `SHOW`) VALUES
 (1, 2, '好诶！我们一起去吧！', '2020-7-16 16:11:20', 1),
