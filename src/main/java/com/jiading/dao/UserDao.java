@@ -23,7 +23,8 @@ public interface UserDao {
             "username=#{username} " +
             "password=#{password} " +
             "head_portrait=#{head_portrait} " +
-            "admin_admin=#{admin_admin} where uid=#{uid}")
+            "admin_admin=#{admin_admin} where uid=#{uid} " +
+            "comment=#{comment};")
     public void updateUser(User user);
 
     @Select("select * from user where code=#{code}")
