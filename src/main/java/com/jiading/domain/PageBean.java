@@ -5,7 +5,7 @@ import java.util.List;
 /*
 分页对象
  */
-public class PageBean<T>{
+public class PageBean<T> {
     private int totalCount;
     private int totalPage;
 
