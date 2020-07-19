@@ -17,14 +17,12 @@ import java.util.List;
 public class BlockServlet extends BaseServlet {
     @Autowired
     BlockService service;
+
     List<Block> all;
 
-    /*
-    TODO
-    返回某个板块的横幅和文字介绍
-     */
     /**
      * 获取所有板块
+     *
      * @param request
      * @param response
      * @throws IOException
@@ -36,7 +34,8 @@ public class BlockServlet extends BaseServlet {
     }
 
     /**
-     *  获取bid指定的板块
+     * 获取bid指定的板块
+     *
      * @param request
      * @param response
      * @throws IOException
@@ -44,11 +43,13 @@ public class BlockServlet extends BaseServlet {
     @RequestMapping("/findByBid")
     public void findOByBid(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String bid = request.getParameter("bid");
-        int bidInt= Integer.parseInt(bid);
-        writeValue(service.findByBid(bidInt),response);
+        int bidInt = Integer.parseInt(bid);
+        writeValue(service.findByBid(bidInt), response);
     }
+
     /**
-     *  获取name指定的板块
+     * 获取name指定的板块
+     *
      * @param request
      * @param response
      * @throws IOException
@@ -56,7 +57,7 @@ public class BlockServlet extends BaseServlet {
     @RequestMapping("/findByName")
     public void findByName(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        writeValue(service.findByName(name),response);
+        writeValue(service.findByName(name), response);
     }
 
 }

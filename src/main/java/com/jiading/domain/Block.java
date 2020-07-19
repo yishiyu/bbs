@@ -10,14 +10,24 @@ public class Block implements Serializable {
     private int bid;//分类id
     private String blockName;//分类名称
     private String logo;//logo的路径
+    private String describe;
 
     public Block() {
     }
 
-    public Block(int bid, String blockName, String logo) {
+    public Block(int bid, String blockName, String logo, String describe) {
         this.bid = bid;
         this.blockName = blockName;
         this.logo = logo;
+        this.describe = describe;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public int getBid() {

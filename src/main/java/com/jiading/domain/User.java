@@ -13,7 +13,8 @@ public class User implements Serializable {
     private boolean admin_admin;//是否是特权用户，true为特权用户
     private String email;//邮箱
     private String status;//激活状态，Y代表激活，N代表未激活
-    private String code;//激活码（要求唯一）
+    private String code;//激活码
+    private String comment;//个人签名
 
     public User(int uid, String username, String password, String head_portrait, boolean super_admin, String email, String status, String code) {
         this.uid = uid;

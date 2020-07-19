@@ -21,8 +21,8 @@ public interface BlockDao {
     public List<Block> findAll();
 
     @Select("select * from blocks where bid=#{bid}")
-    public Block findByBid(@Param("int")int bid);
+    public Block findByBid(@Param("int") int bid);
 
     @Select("select * from blocks where blockname=#{name}")
-    public Block findByName(@Param("name")String name);
+    public Block findByName(@Param("name") String name);
 }

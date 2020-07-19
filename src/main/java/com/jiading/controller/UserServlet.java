@@ -1,6 +1,5 @@
 package com.jiading.controller;
 
-import com.jiading.dao.FavouriteUserDao;
 import com.jiading.domain.ResultInfo;
 import com.jiading.domain.User;
 import com.jiading.service.FavouriteUserService;
@@ -33,12 +32,13 @@ public class UserServlet extends BaseServlet {
 
     /**
      * TODO
-    * @Description: 尝试注册，给前端返回false或者true.如果注册失败（也就是用户名重复）则回滚
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     *
+     * @Description: 尝试注册，给前端返回false或者true.如果注册失败（也就是用户名重复）则回滚
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/register")
     public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1.获取用户名和密码
@@ -145,27 +145,27 @@ public class UserServlet extends BaseServlet {
     }
 
     /**
-    * @Description: 返回该用户所有关注的用户
-    * @Param: [req,resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @Description: 返回该用户所有关注的用户
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/likedPeople")
-    public void allLikedPeople(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void allLikedPeople(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
-        User user=(User)objectUser;
-        List<User> list=favouriteUserService.allLinkedPeople(user);
-        writeValue(list,resp);
+        User user = (User) objectUser;
+        List<User> list = favouriteUserService.allLinkedPeople(user);
+        writeValue(list, resp);
     }
 
     /**
-    * @Description: 添加用户到关注列表
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @Description: 添加用户到关注列表
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/addFavourite")
     public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String uid = req.getParameter("uid");

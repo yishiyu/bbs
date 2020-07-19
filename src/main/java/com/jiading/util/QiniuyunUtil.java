@@ -18,7 +18,7 @@ public class QiniuyunUtil {
 
     private static String ACCESS_KEY;
     private static String SECRET_KEY;
-    private static String  BUCKET_NAME;
+    private static String BUCKET_NAME;
     private static String SERVER_DOMAIN;
 
     private static Configuration cfg;
@@ -53,6 +53,7 @@ public class QiniuyunUtil {
 
     /**
      * 获取云存储服务器域名
+     *
      * @return 域名
      */
     public static String getServerDomain() {
@@ -65,20 +66,20 @@ public class QiniuyunUtil {
      * @param : String ==> 绝对文件路径
      *          Byte[] ==> 字节数组
      *          InputStream ==> 输入流对象中的流
-     * @return 如果成功,返回文件名称,如果失败,返回空字符串
+     * @return 如果成功, 返回文件名称, 如果失败, 返回空字符串
      */
-    public static String uploadObject(Object object){
+    public static String uploadObject(Object object) {
         //默认不指定key的情况下，以文件内容的hash值作为文件名
         String key = null;
         DefaultPutRet putRet = null;
         try {
-            Response response=null;
-            if(object instanceof String){
+            Response response = null;
+            if (object instanceof String) {
                 response = uploadManager.put((String) object, key, upToken);
-            }else if(object instanceof byte[]){
-                response = uploadManager.put((byte[])object, key, upToken);
-            }else if(object instanceof InputStream){
-                response = uploadManager.put((InputStream) object,key,upToken,null,null);
+            } else if (object instanceof byte[]) {
+                response = uploadManager.put((byte[]) object, key, upToken);
+            } else if (object instanceof InputStream) {
+                response = uploadManager.put((InputStream) object, key, upToken, null, null);
             }
 
             //解析上传成功的结果
@@ -92,7 +93,7 @@ public class QiniuyunUtil {
                 ex2.printStackTrace();
             }
         }
-        if(putRet==null){
+        if (putRet == null) {
             return "";
         }
         return putRet.key;
