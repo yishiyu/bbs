@@ -10,12 +10,12 @@ import java.util.List;
 
 @Repository
 public interface FavouritePostDao {
-    @Select("select * from posts where pid in ( select pid from FAVORITE_PID where uid=#{uid})")
-    public List<Post> findByUid(@Param("uid") Integer uid);
+    @Select("select * from posts where pid in ( select pid from FAVORITE_PID where uid=#{uid}) limit #{currentPage},#{pageSize}")
+    public List<Post> findByUidInPages(@Param("uid") Integer uid,@Param("currentPage")Integer currentPage,@Param("pageSize")Integer pageSize);
 
 
     @Select("select count(*) from FAVORITE_PID where uid=#{uid}")
-    public int findCount(@Param("uid") Integer uid);
+    public int findTotalCountByUser(@Param("uid") Integer uid);
 
     /**
      * @Description: date的格式要求是yyyy-mm-dd hour:minute:second
@@ -32,4 +32,5 @@ public interface FavouritePostDao {
 
     @Delete("delete from FAVORITE_PID where pid=#{pid} and uid=#{uid}")
     void cancelLike(@Param("pid") Integer pid, @Param("uid") int uid);
+
 }

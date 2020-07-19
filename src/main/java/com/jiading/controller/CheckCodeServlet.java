@@ -63,7 +63,6 @@ public class CheckCodeServlet extends HttpServlet {
     /**
      * 产生4位随机字符串
      */
-    @RequestMapping("/getCheckCode")
     private String getCheckCode() {
         String base = "0123456789ABCDEFGabcdefg";
         int size = base.length();
