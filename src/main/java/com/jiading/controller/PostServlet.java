@@ -214,15 +214,29 @@ public class PostServlet extends BaseServlet {
     /**
     * @Description: 分页显示我写的所有的帖子
     * @Param: [req, resp]
+     * 输入
+     * 1. currentPage
+     * 2. pageSize
     * @return: void
     * @Author: JiaDing
     * @Date: 2020/7/19
     */
     @RequestMapping("/myPosts")
-    public void myPosts(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void myPostsPageBean(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        //1. 接受参数
+        String currentPage = req.getParameter("currentPage");
+        String pageSize = req.getParameter("pageSize");
+        int intCurrentPage = 1;
+        int intPageSize = 5;//每页显示条数，默认为5条
+        if (currentPage != null && currentPage.length() > 0) {
+            intCurrentPage = Integer.parseInt(currentPage);
+        }
+        if (pageSize != null && pageSize.length() > 0) {
+            intPageSize = Integer.parseInt(pageSize);
+        }
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
-        List<Post> myPosts = postService.findAllByUid(user.getUid());
+        PageBean<Post> myPosts = postService.findAllByUidInPages(user.getUid(),intCurrentPage,intPageSize);
         writeValue(myPosts, resp);
     }
 

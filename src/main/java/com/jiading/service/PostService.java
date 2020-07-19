@@ -17,6 +17,7 @@ public interface PostService {
     List<Post> findAllByUid(String uid);
 
     List<Post> findAllByUid(int uid);
+    PageBean<Post>findAllByUidInPages(int uid,int currentPage,int pageSize);
 
     void writePost(User user, String title, String summary, String content, String bid);
 

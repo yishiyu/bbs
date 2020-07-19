@@ -13,7 +13,7 @@ public interface UserDao {
     @Select("select * from user where username=#{user}")
     public User findByUsername(@Param("user") String username);
 
-    @Insert("insert into user(username,password,head_portrait,admin_admin,email,status,code)values(#{username},SHA(#{password}),#{head_portrait},#{admin_admin},#{email},#{status},#{code})")
+    @Insert("insert into user(username,password,head_portrait,admin_admin,email,status,code)values(#{username},#{password},#{head_portrait},#{admin_admin},#{email},#{status},#{code})")
     public void saveUser(User user);
 
     @Select("select * from user where code=#{code}")

@@ -28,6 +28,12 @@ public interface PostDao {
     @Select("select * from posts where uid=#{uid}")
     List<Post> findAllByUid(@Param("uid") String uid);
 
+    @Select("select * from posts where uid=#{uid}  limit #{start},#{pageSize}")
+    List<Post> findAllByUidInPages(@Param("uid") int uid, @Param("start") int start, @Param("pageSize") int pageSize);
+
+    @Select("select count(*) from posts where uid=#{uid}")
+    int countAllByUid(@Param("uid")int uid);
+
     @Select("select count(*) from posts where bid=#{bid}")
     int findTotalCountByBlock(@Param("bid") int bid);
 

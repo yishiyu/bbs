@@ -113,6 +113,26 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public PageBean<Post> findAllByUidInPages(int uid, int currentPage, int pageSize) {
+        //封装PageBean
+        PageBean<Post> pb = new PageBean<Post>();
+        pb.setCurrentPage(currentPage);
+        pb.setPageSize(pageSize);
+        //设置总记录数
+        int totalCount = postDao.countAllByUid(uid);
+        pb.setTotalCount(totalCount);
+        //设置当前页显示的数据集合
+        int start = (currentPage - 1) * pageSize;
+
+        List<Post> list = postDao.findAllByUidInPages(uid, start, pageSize);
+        pb.setList(list);
+        //设置总页数
+        int totalPage = totalCount % pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
+        pb.setTotalPage(totalPage);
+        return pb;
+    }
+
+    @Override
     public void writePost(User user, String title, String summary, String content,String bid) {
         postDao.writePost(user.getUid(),Integer.valueOf(bid),title,summary,content, DateUtil.getStringTimeNow());
     }
