@@ -17,7 +17,6 @@ public class Post implements Serializable {
     private String content;//文章
     private String title;//标题
     private String date;//文章发布时间
-    private String image;
     private boolean isCanShow;//是否显示
     private int view;//浏览量
     private int liked;//收藏量
@@ -25,7 +24,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(int pid, int uid, int bid, String summary, String content, String title, String date, String image, boolean isCanShow, int view) {
+    public Post(int pid, int uid, int bid, String summary, String content, String title, String date, boolean isCanShow, int view) {
         this.pid = pid;
         this.uid = uid;
         this.bid = bid;
@@ -33,7 +32,6 @@ public class Post implements Serializable {
         this.content = content;
         this.title = title;
         this.date = date;
-        this.image = image;
         this.isCanShow = isCanShow;
         this.view = view;
     }
@@ -94,13 +92,6 @@ public class Post implements Serializable {
         this.date = date;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public boolean isCanShow() {
         return isCanShow;

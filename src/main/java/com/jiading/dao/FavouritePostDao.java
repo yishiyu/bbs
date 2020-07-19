@@ -2,9 +2,7 @@ package com.jiading.dao;
 
 
 import com.jiading.domain.Post;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,10 +24,12 @@ public interface FavouritePostDao {
      * @Author: JiaDing
      * @Date: 2020/7/18
      */
-    @Update("insert into FAVORITE_PID('UID','PID','TIME') values(#{uid},#{pid},#{date})")
+    @Insert("insert into FAVORITE_PID('UID','PID','TIME') values(#{uid},#{pid},#{date})")
     void add(@Param("uid") Integer uid, @Param("pid") Integer pid, @Param("date") String date);
 
     @Select("select * from FAVORITE_PID where uid=#{uid} and pid=#{pid}")
     public Post findByPidAndUid(@Param("uid") int uid, @Param("pid") int pid);
 
+    @Delete("delete from FAVORITE_PID where pid=#{pid} and uid=#{uid}")
+    void cancelLike(@Param("pid") Integer pid, @Param("uid") int uid);
 }

@@ -3,7 +3,9 @@ package com.jiading.service.impl;
 import com.jiading.dao.PostDao;
 import com.jiading.domain.PageBean;
 import com.jiading.domain.Post;
+import com.jiading.domain.User;
 import com.jiading.service.PostService;
+import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -57,5 +59,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findAllByUid(int uid) {
         return postDao.findAllByUid(String.valueOf(uid));
+    }
+
+    @Override
+    public void writePost(User user, String title, String summary, String content,String bid) {
+        postDao.writePost(user.getUid(),Integer.valueOf(bid),title,summary,content, DateUtil.get)
     }
 }

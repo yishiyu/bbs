@@ -24,7 +24,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/post")
-public class PostServlet extends BaseServlet{
+public class PostServlet extends BaseServlet {
     @Autowired
     private PostService postService;
     @Autowired
@@ -36,19 +36,19 @@ public class PostServlet extends BaseServlet{
     TODO
     按分类返回
      */
-     */
+
     /**
-    * @Description: 用于搜索功能，给出关键字进行搜索，返回结果列表和总页数，查询的时候会根据当前页面来在sql中设置只返回对应结果
+     * @Description: 用于搜索功能，给出关键字进行搜索，返回结果列表和总页数，查询的时候会根据当前页面来在sql中设置只返回对应结果
      * 前端需要传入的参数有四个
      * currentPage:现在到第几页了
      * pageSize:一页显示多少个结果
      * bid:属于哪个分类
      * postName:搜索的关键字
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/pageQuery")
     public void pageQuery(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1. 接受参数
@@ -76,6 +76,7 @@ public class PostServlet extends BaseServlet{
         PageBean<Post> pb = postService.pageQuery(intBid, intCurrentPage, intPageSize, postName);
         writeValue(pb, resp);
     }
+
     @RequestMapping("/findOne")
     public void findOne(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1.接收参数id
@@ -117,32 +118,34 @@ public class PostServlet extends BaseServlet{
     取消收藏
      */
     @RequestMapping("/cancelFavourite")
-    public void cancelFavourite(HttpServletRequest req,HttpServletResponse resp){
+    public void cancelFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String pid = req.getParameter("pid");
         User user = (User) req.getSession().getAttribute("user");
-        favouritePostService.cancelLike(Integer.valueOf(pid),user.getUid());
+        favouritePostService.cancelLike(Integer.valueOf(pid), user.getUid());
     }
+
     @RequestMapping("/addFavourite")
     public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String pid = req.getParameter("pid");
         User user = (User) req.getSession().getAttribute("user");
         favouritePostService.add(Integer.parseInt(pid), user.getUid());
     }
+
     /**
-    * @Description: 所有收藏的帖子
+     * @Description: 所有收藏的帖子
      * TODO
      * 分页显示
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    **/
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     **/
     @RequestMapping("/likedPosts")
-    public void allLikedPosts(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void allLikedPosts(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
-        User user=(User)objectUser;
-        List<Post> list=favouritePostService.allLinkedPosts(user);
-        writeValue(list,resp);
+        User user = (User) objectUser;
+        List<Post> list = favouritePostService.allLinkedPosts(user);
+        writeValue(list, resp);
     }
     /*
     TODO
@@ -150,16 +153,35 @@ public class PostServlet extends BaseServlet{
      */
 
     @RequestMapping("/myPosts")
-    public void myPosts(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+    public void myPosts(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
-        User user=(User)objectUser;
+        User user = (User) objectUser;
         List<Post> myPosts = postService.findAllByUid(user.getUid());
-        writeValue(myPosts,resp);
+        writeValue(myPosts, resp);
     }
-    /*
-    TODO
-    发帖
+
+    /**
+     * @Description: 发帖
+     * 前端需要传入的参数
+     * 1. title
+     * 2. summary
+     * 3. content
+     * 4. block的id,也就是bid
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
      */
+    @RequestMapping("/writePost")
+    public void writePost(HttpServletRequest req, HttpServletResponse resp) {
+        Object objectUser = req.getSession().getAttribute("user");
+        User user = (User) objectUser;
+        String title = req.getParameter("title");
+        String summary = req.getParameter("summary");
+        String content = req.getParameter("content");
+        String bid = req.getParameter("bid");
+        postService.writePost(user,title,summary,content,bid);
+    }
     /*
     TODO
     评论

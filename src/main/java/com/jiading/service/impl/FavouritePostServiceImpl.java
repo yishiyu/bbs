@@ -37,12 +37,16 @@ public class FavouritePostServiceImpl implements FavouritePostService {
         return favouritePostDao.findByUid(user.getUid());
     }
 
+    /**
+     * @Description: 撤销对文章的收藏
+     * @Param: [valueOf, uid]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @Override
-    public void cancelLike(Integer valueOf, int uid) {
-        /*
-        TODO
-        完成功能
-         */
+    public void cancelLike(Integer pid, int uid) {
+        favouritePostDao.cancelLike(pid, uid);
     }
 
 
