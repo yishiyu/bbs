@@ -33,45 +33,23 @@ public class UserServlet extends BaseServlet {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        //尝试登陆
-        User u = service.login(user);
         ResultInfo resultInfo = new ResultInfo();
-        String checkcode = (String) req.getSession().getAttribute("CHECKCODE_SERVER");
-        req.getSession().removeAttribute("CHECKCODE_SERVER");
-        if (!user.getCode().toUpperCase().equals(checkcode.toUpperCase())) {
-            resultInfo.setFlag(false);
-            resultInfo.setErrorMsg("验证码错误");
-            writeValue(resultInfo, resp);
-            return;
-        }
-        //4.判断用户名或密码是否正确
-        if (u == null) {
-            //用户名密码错误
-            resultInfo.setFlag(false);
-            resultInfo.setErrorMsg("用户名或密码错误");
-        }
-        //5.判断用户是否激活
-        if (u != null && !"Y".equals(u.getStatus())) {
-            //用户尚未激活
-            resultInfo.setFlag(false);
-            resultInfo.setErrorMsg("您尚未激活，请登录邮箱激活");
-        }
-        //6.判断登录成功
-        if (u != null && "Y".equals(u.getStatus())) {
-            //登录成功
+        if(service.register(user)){
             resultInfo.setFlag(true);
-            req.getSession().setAttribute("user", u);
+        }else{
+            resultInfo.setFlag(false);
         }
         //7.响应数据
-        writeValue(resultInfo, resp);
+        writeValue(resultInfo,resp);
     }
 
     @RequestMapping("/active")
     public void active(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1.获取激活码
         String code = req.getParameter("code");
+        String username = req.getParameter("username");
         if (code != null) {
-            boolean flag = service.active(code);
+            boolean flag = service.active(code, username);
             String msg;
             if (flag) {
                 //激活成功

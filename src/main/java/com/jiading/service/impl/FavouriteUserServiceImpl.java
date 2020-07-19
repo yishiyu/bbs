@@ -14,18 +14,19 @@ import java.util.Date;
 public class FavouriteUserServiceImpl implements FavouritePostService {
     @Autowired
     private FavouriteUserDao favouriteUserDao;
+
     @Override
     public boolean isFavouritePost(String rid, int uid) {
         FavoriteUser byRidAndUid = favouriteUserDao.findByLinkedUidAndUid(uid, Integer.parseInt(rid));
-        if(byRidAndUid==null){
+        if (byRidAndUid == null) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
     @Override
     public void add(int linkedUid, int uid) {
-        favouriteUserDao.add(uid, DateUtil.getStringTimeNow(),linkedUid);
+        favouriteUserDao.add(uid, DateUtil.getStringTimeNow(), linkedUid);
     }
 }

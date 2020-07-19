@@ -1,7 +1,6 @@
 package com.jiading.dao;
 
 
-
 import com.jiading.domain.FavoriteUser;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,5 +22,5 @@ public interface FavouriteUserDao {
     void add(@Param("uid") Integer uid, @Param("date") String date, @Param("linkedUid") Integer linkedUid);
 
     @Select("select * from FAVORITE_UID where uid=#{uid} and linkeduid=#{linkedUid}")
-    public FavoriteUser findByLinkedUidAndUid(@Param("uid") int uid,@Param("linkedUid") int likedUid);
+    public FavoriteUser findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
 }
