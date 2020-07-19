@@ -18,12 +18,17 @@ public class FavouriteUserServiceImpl implements FavouriteUserService {
 
     @Override
     public boolean isFavouriteUser(int linkedUid, int uid) {
-        return false;
+        return favouriteUserDao.findByUid(uid).contains(linkedUid);
     }
 
     @Override
     public void add(int linkedUid, int uid) {
         favouriteUserDao.add(uid, DateUtil.getStringTimeNow(), linkedUid);
+    }
+
+    @Override
+    public void delete(int linkedUid, int uid) {
+        favouriteUserDao.delete(uid,linkedUid);
     }
 
     @Override

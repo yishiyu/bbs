@@ -60,4 +60,19 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUsernameAndPassword(user);
     }
 
+    @Override
+    public User findByUserId(int uid) {
+        return userDao.findByUserId(uid);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
+
 }
