@@ -20,24 +20,39 @@ public class BlockServlet extends BaseServlet {
     List<Block> all;
 
     /**
-     * 因为使用了springMVC框架，每个方法有自己的映射，所以不再需要之前的那种
-     *
+     * 获取所有板块
      * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping("/findAll")
     public void findAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         all = service.findAll();
         writeValue(all, response);
     }
 
-    @RequestMapping("/findOne")
-    public void findOne(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    /**
+     *  获取bid指定的板块
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/findByBid")
+    public void findOByBid(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String bid = request.getParameter("bid");
-        int bidInt = Integer.parseInt(bid);
-        writeValue(all.get(bidInt - 1), response);
+        int bidInt= Integer.parseInt(bid);
+        writeValue(service.findByBid(bidInt),response);
+    }
+    /**
+     *  获取name指定的板块
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/findByName")
+    public void findByName(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("name");
+        writeValue(service.findByName(name),response);
     }
 
 }

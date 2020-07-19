@@ -28,4 +28,20 @@ public class BlockServiceImpl implements BlockService {
         return all;
     }
 
+    /**
+     * 根据bid查询block
+     */
+    @Override
+    public Block findByBid(int bid){
+        return blockDao.findByBid(bid);
+    }
+
+    /**
+     * 根据name查询block
+     */
+    @Override
+    public Block findByName(String name){
+        return blockDao.findByName(name);
+    }
+
 }
