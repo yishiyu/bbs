@@ -28,7 +28,8 @@ export default new Vuex.Store({
     visit: {
       userId: ""
     },
-    scroll:0
+    scroll: 0,
+    maxPageNum: 3
   },
   mutations: {
     login(state, user) {
@@ -37,15 +38,15 @@ export default new Vuex.Store({
       window.localStorage.setItem("user", JSON.stringify(user));
       window, localStorage.setItem("islogin", true);
     },
-    scroll(state,curr){
-        state.scroll = curr;
+    scroll(state, curr) {
+      state.scroll = curr;
     }
   },
   actions: {},
   modules: {},
-  getters:{
-      getScroll:state=>{
-          return state.scroll
-      }
+  getters: {
+    getScroll: state => {
+      return state.scroll;
+    }
   }
 });

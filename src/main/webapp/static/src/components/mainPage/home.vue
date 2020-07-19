@@ -1,29 +1,29 @@
 <template>
   <div>
     <div style="width:100%;position:relative;">
-      <img src="../../assets/sitehead.png"
-           style="width:100%;height:auto"
-           alt="">
+      <img
+        src="../../assets/sitehead.png"
+        style="width:100%;height:auto"
+        alt=""
+      />
     </div>
     <home_header style="margin-top:-13.55%"></home_header>
     <progressbar></progressbar>
-    <br><br><br><br><br><br>
+    <br /><br /><br /><br /><br /><br />
     <b-container id="contain">
-      <br>
+      <br />
       <b-row>
-        <b-col md="8"
-               id="carousel"
-               class="incontainer">
+        <b-col md="8" id="carousel" class="incontainer">
           <carousel></carousel>
         </b-col>
-        <b-col md="4"
-               id="fashion"
-               class="rounded-lg incontainer">
+        <b-col md="4" id="fashion" class="rounded-lg incontainer">
           <div>
             <ul>
-              <router-link v-for="(item, index) in fashion"
-                           :key="index"
-                           :to="item.url">
+              <router-link
+                v-for="(item, index) in fashion"
+                :key="index"
+                :to="item.url"
+              >
                 <li style="display: block;">
                   {{ item.title }}
                   <p style="text-align: end;">time</p>
@@ -35,28 +35,24 @@
       </b-row>
       <br />
       <b-row>
-        <b-col class="nopadding rounded-top incontainer"
-               style="border: 0.5px ridge ;">
+        <b-col
+          class="nopadding rounded-top incontainer"
+          style="border: 0.5px ridge ;"
+        >
           论坛版块
         </b-col>
       </b-row>
 
       <b-row id="main">
-        <b-col md="8"
-               id="blocks">
+        <b-col md="8" id="blocks">
           <br />
           <div>
             <b-row>
-              <b-col v-for="(item, index) in blocks"
-                     :key="index"
-                     cols="6">
-                <router-link :to="item.url"
-                             class="block_box">
-                  <div style="max-width: 20rem;"
-                       class="mb-2 block_card">
+              <b-col v-for="(item, index) in blocks" :key="index" cols="6">
+                <router-link :to="item.url" class="block_box">
+                  <div style="max-width: 20rem;" class="mb-2 block_card">
                     <div class="imgbox">
-                      <img src="http://gittub.cc/small2.png"
-                           alt="" />
+                      <img src="http://gittub.cc/small2.png" alt="" />
                     </div>
                     <p>
                       {{ item.name }}
@@ -69,23 +65,21 @@
         </b-col>
         <b-col md="4">
           <br /><br /><br /><br />
-          <div id="sider_bar"
-               class="rounded-lg ">
+          <div id="sider_bar" class="rounded-lg ">
             <div class="sider">
               <div style="width:100%;height:100px;overflow:hidden">
-                <img src="../../assets/back.jpg"
-                     style="width:100%;overflow:hidden"
-                     alt="">
+                <img
+                  src="../../assets/back.jpg"
+                  style="width:100%;overflow:hidden"
+                  alt=""
+                />
               </div>
               <div id="icon_box">
-                <img src="http://gittub.cc/small2.png"
-                     alt="">
+                <img src="http://gittub.cc/small2.png" alt="" />
               </div>
               <h2>Gittub</h2>
               <p>这里是gittub的简介</p>
-              <div id="site_intro">
-
-              </div>
+              <div id="site_intro"></div>
             </div>
           </div>
         </b-col>
@@ -95,84 +89,84 @@
   </div>
 </template>
 <script>
-import home_header from '../common/Header'
-import home_footer from '../common/Footer'
-import carousel from '../common/carousel'
-import progressbar from '../common/progress'
+import home_header from "../common/Header";
+import home_footer from "../common/Footer";
+import carousel from "../common/carousel";
+import progressbar from "../common/progress";
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
       blocks: [
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/block/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/block/111"
         },
         {
-          name: 'test',
-          imgurl: 'http://gittub.cc/small2.png',
-          introduction: '',
-          url: '/blocks/111'
+          name: "test",
+          imgurl: "http://gittub.cc/small2.png",
+          introduction: "",
+          url: "/blocks/111"
         }
       ],
       fashion: [
         {
-          title: '测试热门文章',
-          url: '/page/1'
+          title: "测试热门文章",
+          url: "/page/1"
         },
         {
-          title: '测试热门文章',
-          url: 'xxx://dfdf.vdf'
+          title: "测试热门文章",
+          url: "xxx://dfdf.vdf"
         },
         {
-          title: '测试热门文章',
-          url: 'xxx://dfdf.vdf'
+          title: "测试热门文章",
+          url: "xxx://dfdf.vdf"
         },
         {
-          title: '测试热门文章',
-          url: 'xxx://dfdf.vdf'
+          title: "测试热门文章",
+          url: "xxx://dfdf.vdf"
         }
       ],
-      block_names: [{ text: 'Select One', value: null }, 'a', 'b', 'c']
-    }
+      block_names: [{ text: "Select One", value: null }, "a", "b", "c"]
+    };
   },
   components: {
     home_header,
@@ -185,7 +179,7 @@ export default {
     onSubmit() {}
   },
   mounted() {}
-}
+};
 </script>
 <style lang="scss" scoped>
 .title {

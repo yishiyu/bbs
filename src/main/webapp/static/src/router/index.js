@@ -11,23 +11,45 @@ const routes = [
   {
     path: "/page/:page_id",
     name: "tiezi",
-    component: () => import("../components/tiezi/page")
+    component: () => import("../components/post/page")
   },
   {
     path: "/admin",
     name: "admin",
 
-    component: () => import("../components/admin/pinel")
+    component: () => import("../components/admin/pinel"),
+    children: [
+      {
+        path: "dashboard",
+        name: "dashboard",
+        component: () => import("../components/admin/dashboard")
+      }
+    ]
   },
   {
-    path: "/block/:block_id",
+    path: "/admin",
+    redirect: "/admin/dashboard"
+  },
+  {
+    path: "/block/:block_id/:count",
     name: "block",
     component: () => import("../components/block/showpages")
   },
   {
+    path: "/block/:block_id/",
+    redirect: "/block/:block_id/1"
+  },
+  {
     path: "/userHome/:user_id",
     name: "userhome",
-    component: () => import("../components/userHome/userhome")
+    component: () => import("../components/userHome/userhome"),
+    children: [
+      {
+        path: "profile",
+        name: "profile",
+        component: () => import("../components/userHome/profile")
+      }
+    ]
   },
   {
     path: "/login",

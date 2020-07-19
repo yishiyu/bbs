@@ -22,10 +22,10 @@ export default {
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       // 当前滑动高度
-      
+
       let scrollY = document.documentElement.scrollTop;
-      this.$store.commit("scroll",scrollY);
- 
+      this.$store.commit("scroll", scrollY);
+
       // 当前位置百分比小数
       this.value = scrollY / surplus;
       // 设置导航栏，这里使用NProgress.set() 动态更改进度条

@@ -88,6 +88,12 @@
           </div>
         </b-col>
       </b-row>
+      <br />
+      <b-row>
+        <b-col>
+          <page_nav></page_nav>
+        </b-col>
+      </b-row>
     </b-container>
     <block_footer></block_footer>.
   </div>
@@ -96,6 +102,7 @@
 import block_header from "../common/Header";
 import block_footer from "../common/Footer";
 import bread from "../common/breadcrumb";
+import page_nav from "../common/pagecounter";
 import progressbar from "../common/progress";
 export default {
   data() {
@@ -115,7 +122,8 @@ export default {
     block_header,
     block_footer,
     bread,
-    progressbar
+    progressbar,
+    page_nav
   },
   methods: {
     onSubmit(e) {

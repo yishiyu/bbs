@@ -12,11 +12,9 @@
   </footer>
 </template>
 <style lang="scss" scoped>
-
-
 footer {
   align-self: center;
-  background-color:black;
+  background-color: black;
   padding: 0;
 }
 </style>

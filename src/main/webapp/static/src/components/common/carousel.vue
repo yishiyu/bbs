@@ -16,8 +16,7 @@
       <b-carousel-slide
         img-src="https://picsum.photos/1024/480/?image=52"
       ></b-carousel-slide>
-      <b-carousel-slide img-src="../../assets/广告1.png">
-      </b-carousel-slide>
+      <b-carousel-slide img-src="../../assets/广告1.png"> </b-carousel-slide>
 
       <b-carousel-slide
         img-src="https://picsum.photos/1024/480/?image=58"
