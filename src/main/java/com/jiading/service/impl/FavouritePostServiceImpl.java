@@ -37,5 +37,13 @@ public class FavouritePostServiceImpl implements FavouritePostService {
         return favouritePostDao.findByUid(user.getUid());
     }
 
+    @Override
+    public void cancelLike(Integer valueOf, int uid) {
+        /*
+        TODO
+        完成功能
+         */
+    }
+
 
 }

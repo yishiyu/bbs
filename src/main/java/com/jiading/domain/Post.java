@@ -20,6 +20,7 @@ public class Post implements Serializable {
     private String image;
     private boolean isCanShow;//是否显示
     private int view;//浏览量
+    private int liked;//收藏量
 
     public Post() {
     }

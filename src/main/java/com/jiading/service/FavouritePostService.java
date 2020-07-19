@@ -8,10 +8,12 @@ import java.util.List;
 
 @Service("favouritePostService")
 public interface FavouritePostService {
-    public boolean isFavouritePost(String pid, int uid);
+    boolean isFavouritePost(String pid, int uid);
 
     void add(int pid, int uid);
 
 
     List<Post> allLinkedPosts(User user);
+
+    void cancelLike(Integer valueOf, int uid);
 }

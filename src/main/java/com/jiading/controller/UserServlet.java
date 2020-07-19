@@ -25,7 +25,14 @@ public class UserServlet extends BaseServlet {
     private UserService service;
     @Autowired
     private FavouriteUserService favouriteUserService;
-
+/**
+ * TODO
+* @Description: 尝试注册，给前端返回false或者true.如果注册失败（也就是用户名重复）则回滚
+* @Param: [req, resp]
+* @return: void
+* @Author: JiaDing
+* @Date: 2020/7/19
+*/
     @RequestMapping("/register")
     public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1.获取用户名和密码
@@ -73,7 +80,10 @@ public class UserServlet extends BaseServlet {
         //1.销毁session
         req.getSession().invalidate();
         //2.跳转
-        resp.sendRedirect(req.getContextPath() + "/login.html");
+        /*
+        vue不需要后端进行跳转
+         */
+        //resp.sendRedirect(req.getContextPath() + "/login.html");
     }
 
     @RequestMapping("/findUser")
@@ -154,4 +164,20 @@ public class UserServlet extends BaseServlet {
         User user = (User) req.getSession().getAttribute("user");
         favouriteUserService.add(Integer.parseInt(uid), user.getUid());
     }
+    /*
+    TODO
+    取消收藏
+     */
+    /*
+    TODO
+    是否已关注
+     */
+    /*
+    TODO
+    修改密码
+     */
+    /*
+    TODO
+    修改头像
+     */
 }

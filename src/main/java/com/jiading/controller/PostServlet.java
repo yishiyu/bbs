@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -32,8 +32,18 @@ public class PostServlet extends BaseServlet{
     public static int NOLOGIN = -1;
     public static int FAVOURITED = 1;
     public static int NOTFAVOURITED = 0;
+    /*
+    TODO
+    按分类返回
+     */
+     */
     /**
     * @Description: 用于搜索功能，给出关键字进行搜索，返回结果列表和总页数，查询的时候会根据当前页面来在sql中设置只返回对应结果
+     * 前端需要传入的参数有四个
+     * currentPage:现在到第几页了
+     * pageSize:一页显示多少个结果
+     * bid:属于哪个分类
+     * postName:搜索的关键字
     * @Param: [req, resp]
     * @return: void
     * @Author: JiaDing
@@ -102,6 +112,16 @@ public class PostServlet extends BaseServlet{
         writeValue(ans, resp);
     }
 
+    /*
+    TODO
+    取消收藏
+     */
+    @RequestMapping("/cancelFavourite")
+    public void cancelFavourite(HttpServletRequest req,HttpServletResponse resp){
+        String pid = req.getParameter("pid");
+        User user = (User) req.getSession().getAttribute("user");
+        favouritePostService.cancelLike(Integer.valueOf(pid),user.getUid());
+    }
     @RequestMapping("/addFavourite")
     public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String pid = req.getParameter("pid");
@@ -110,11 +130,13 @@ public class PostServlet extends BaseServlet{
     }
     /**
     * @Description: 所有收藏的帖子
+     * TODO
+     * 分页显示
     * @Param: [req, resp]
     * @return: void
     * @Author: JiaDing
     * @Date: 2020/7/19
-    */
+    **/
     @RequestMapping("/likedPosts")
     public void allLikedPosts(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
@@ -122,4 +144,36 @@ public class PostServlet extends BaseServlet{
         List<Post> list=favouritePostService.allLinkedPosts(user);
         writeValue(list,resp);
     }
+    /*
+    TODO
+    分页显示
+     */
+
+    @RequestMapping("/myPosts")
+    public void myPosts(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        Object objectUser = req.getSession().getAttribute("user");
+        User user=(User)objectUser;
+        List<Post> myPosts = postService.findAllByUid(user.getUid());
+        writeValue(myPosts,resp);
+    }
+    /*
+    TODO
+    发帖
+     */
+    /*
+    TODO
+    评论
+     */
+    /*
+    TODO
+    显示该文章对应的所有评论
+     */
+    /*
+    TODO
+    浏览计数
+     */
+    /*
+    TODO
+    收藏计数
+     */
 }

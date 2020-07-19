@@ -12,4 +12,5 @@ public interface PostService {
 
     Post findOne(String pid);
     List<Post> findAllByUid(String uid);
+    List<Post> findAllByUid(int uid);
 }
