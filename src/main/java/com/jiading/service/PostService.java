@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("postService")
+
 public interface PostService {
     public PageBean<Post> pageQueryForSearch(int bid, int currentPage, int pageSize, String postName);
 
@@ -17,7 +17,8 @@ public interface PostService {
     List<Post> findAllByUid(String uid);
 
     List<Post> findAllByUid(int uid);
-    PageBean<Post>findAllByUidInPages(int uid,int currentPage,int pageSize);
+
+    PageBean<Post> findAllByUidInPages(int uid, int currentPage, int pageSize);
 
     void writePost(User user, String title, String summary, String content, String bid);
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("favouritePostService")
+
 public interface FavouritePostService {
     boolean isFavouritePost(String pid, int uid);
 

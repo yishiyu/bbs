@@ -110,12 +110,12 @@ public class PostServlet extends BaseServlet {
     }
 
     /**
-    * @Description: 根据pid来获取某一篇文章，主要是用于浏览。每次操作都为浏览量加一
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @Description: 根据pid来获取某一篇文章，主要是用于浏览。每次操作都为浏览量加一
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/findOne")
     public void findOne(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1.接收参数id
@@ -127,6 +127,13 @@ public class PostServlet extends BaseServlet {
         writeValue(post, resp);
     }
 
+    /**
+     * @Description: 传入pid, 返回含有的true或false的flag的resultinfo, 查看是否是该用户已经收藏的帖子
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/isFavourite")
     public void isFavourite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int ans = NOTFAVOURITED;
@@ -154,12 +161,12 @@ public class PostServlet extends BaseServlet {
     }
 
     /**
-    * @Description: 取消收藏，收藏量减一
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @Description: 取消收藏，收藏量减一
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/cancelFavourite")
     public void cancelFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String pid = req.getParameter("pid");
@@ -169,12 +176,12 @@ public class PostServlet extends BaseServlet {
     }
 
     /**
-    * @Description: 添加收藏，该文章的收藏量同时加一
-    * @Param: [req, resp]
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @Description: 添加收藏，该文章的收藏量同时加一
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/addFavourite")
     public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String pid = req.getParameter("pid");
@@ -208,19 +215,20 @@ public class PostServlet extends BaseServlet {
         }
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
-        PageBean<Post> list = favouritePostService.allLinkedPosts(intCurrentPage,intPageSize,user);
+        PageBean<Post> list = favouritePostService.allLinkedPosts(intCurrentPage, intPageSize, user);
         writeValue(list, resp);
     }
+
     /**
-    * @Description: 分页显示我写的所有的帖子
-    * @Param: [req, resp]
+     * @Description: 分页显示我写的所有的帖子
+     * @Param: [req, resp]
      * 输入
      * 1. currentPage
      * 2. pageSize
-    * @return: void
-    * @Author: JiaDing
-    * @Date: 2020/7/19
-    */
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @RequestMapping("/myPosts")
     public void myPostsPageBean(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //1. 接受参数
@@ -236,7 +244,7 @@ public class PostServlet extends BaseServlet {
         }
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
-        PageBean<Post> myPosts = postService.findAllByUidInPages(user.getUid(),intCurrentPage,intPageSize);
+        PageBean<Post> myPosts = postService.findAllByUidInPages(user.getUid(), intCurrentPage, intPageSize);
         writeValue(myPosts, resp);
     }
 

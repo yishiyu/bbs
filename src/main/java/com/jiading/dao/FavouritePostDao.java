@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface FavouritePostDao {
     @Select("select * from posts where pid in ( select pid from FAVORITE_PID where uid=#{uid}) limit #{currentPage},#{pageSize}")
-    public List<Post> findByUidInPages(@Param("uid") Integer uid,@Param("currentPage")Integer currentPage,@Param("pageSize")Integer pageSize);
+    public List<Post> findByUidInPages(@Param("uid") Integer uid, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
 
 
     @Select("select count(*) from FAVORITE_PID where uid=#{uid}")

@@ -8,6 +8,7 @@ import com.jiading.domain.User;
 import com.jiading.service.PostService;
 import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @author: JiaDing
  * @create: 2020-07-18 16:53
  **/
+@Service("postService")
 public class PostServiceImpl implements PostService {
     @Autowired
     PostDao postDao;
@@ -39,16 +41,17 @@ public class PostServiceImpl implements PostService {
         pb.setTotalPage(totalPage);
         return pb;
     }
-/**
-* @Description: show默认设置为1，已在sql中调整
-* @Param: [uid, pid, text]
-* @return: void
-* @Author: JiaDing
-* @Date: 2020/7/19
-*/
+
+    /**
+     * @Description: show默认设置为1，已在sql中调整
+     * @Param: [uid, pid, text]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     @Override
     public void writeComment(int uid, int pid, String text) {
-        postDao.writeComment(uid,pid,text,DateUtil.getStringTimeNow());
+        postDao.writeComment(uid, pid, text, DateUtil.getStringTimeNow());
     }
 
     @Override
@@ -133,8 +136,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void writePost(User user, String title, String summary, String content,String bid) {
-        postDao.writePost(user.getUid(),Integer.valueOf(bid),title,summary,content, DateUtil.getStringTimeNow());
+    public void writePost(User user, String title, String summary, String content, String bid) {
+        postDao.writePost(user.getUid(), Integer.valueOf(bid), title, summary, content, DateUtil.getStringTimeNow());
     }
 
 }

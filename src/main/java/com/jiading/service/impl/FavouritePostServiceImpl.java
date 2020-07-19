@@ -39,7 +39,7 @@ public class FavouritePostServiceImpl implements FavouritePostService {
         PageBean<Post> pb = new PageBean<Post>();
         pb.setCurrentPage(currentPage);
         pb.setPageSize(pageSize);
-        int uid=user.getUid();
+        int uid = user.getUid();
         //设置总记录数
         int totalCount = favouritePostDao.findTotalCountByUser(uid);
         pb.setTotalCount(totalCount);

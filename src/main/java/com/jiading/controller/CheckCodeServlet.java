@@ -19,6 +19,13 @@ import java.util.Random;
 @Controller
 @RequestMapping("/checkCode")
 public class CheckCodeServlet extends HttpServlet {
+    /**
+     * @Description: 获取验证码
+     * @Param: [request, response]
+     * @return: void
+     * @Author: JiaDing
+     * @Date: 2020/7/19
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //服务器通知浏览器不要缓存

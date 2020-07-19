@@ -2,7 +2,6 @@ package com.jiading.dao;
 
 import com.jiading.domain.Post;
 import com.jiading.domain.Reply;
-import javafx.geometry.Pos;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -32,7 +31,7 @@ public interface PostDao {
     List<Post> findAllByUidInPages(@Param("uid") int uid, @Param("start") int start, @Param("pageSize") int pageSize);
 
     @Select("select count(*) from posts where uid=#{uid}")
-    int countAllByUid(@Param("uid")int uid);
+    int countAllByUid(@Param("uid") int uid);
 
     @Select("select count(*) from posts where bid=#{bid}")
     int findTotalCountByBlock(@Param("bid") int bid);
@@ -48,7 +47,8 @@ public interface PostDao {
     void writePost(@Param("uid") int uid, @Param("bid") Integer bid, @Param("title") String title, @Param("summary") String summary, @Param("content") String content, @Param("time") String TimeNow);
 
     @Insert("insert into reply('UID','PID','CONTENT','TIME') values(#{uid},#{pid},#{text},#{time})")
-    void writeComment(@Param("uid") int uid, @Param("pid") int pid,@Param("text") String text,@Param("time") String time);
+    void writeComment(@Param("uid") int uid, @Param("pid") int pid, @Param("text") String text, @Param("time") String time);
+
     @Select("select * from reply where pid=#{pid} order by time")
     List<Reply> allCommentsInThisPost(@Param("pid") String pid);
 
