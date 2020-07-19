@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service("postService")
 public interface PostService {
-    public PageBean<Post> pageQuery(int cid, int currentPage, int pageSize, String rname);
+    public PageBean<Post> pageQuery(int bid, int currentPage, int pageSize, String postName);
 
     Post findOne(String pid);
     List<Post> findAllByUid(String uid);

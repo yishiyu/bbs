@@ -1,7 +1,9 @@
 package com.jiading.controller;
 
+import com.jiading.dao.FavouriteUserDao;
 import com.jiading.domain.ResultInfo;
 import com.jiading.domain.User;
+import com.jiading.service.FavouriteUserService;
 import com.jiading.service.UserService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,6 +23,8 @@ public class UserServlet extends BaseServlet {
     //调用Service查询
     @Autowired
     private UserService service;
+    @Autowired
+    private FavouriteUserService favouriteUserService;
 
     @RequestMapping("/register")
     public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -34,13 +39,13 @@ public class UserServlet extends BaseServlet {
             e.printStackTrace();
         }
         ResultInfo resultInfo = new ResultInfo();
-        if(service.register(user)){
+        if (service.register(user)) {
             resultInfo.setFlag(true);
-        }else{
+        } else {
             resultInfo.setFlag(false);
         }
         //7.响应数据
-        writeValue(resultInfo,resp);
+        writeValue(resultInfo, resp);
     }
 
     @RequestMapping("/active")
@@ -121,5 +126,32 @@ public class UserServlet extends BaseServlet {
             req.getSession().setAttribute("user", u);
         }
         writeValue(resultInfo, resp);
+    }
+    /**
+    * @Description: 返回该用户所有关注的用户
+    * @Param: [req,resp]
+    * @return: void
+    * @Author: JiaDing
+    * @Date: 2020/7/19
+    */
+    @RequestMapping("/likedPeople")
+    public void allLikedPeople(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        Object objectUser = req.getSession().getAttribute("user");
+        User user=(User)objectUser;
+        List<User> list=favouriteUserService.allLinkedPeople(user);
+        writeValue(list,resp);
+    }
+    /**
+    * @Description: 添加用户到关注列表
+    * @Param: [req, resp]
+    * @return: void
+    * @Author: JiaDing
+    * @Date: 2020/7/19
+    */
+    @RequestMapping("/addFavourite")
+    public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
+        String uid = req.getParameter("uid");
+        User user = (User) req.getSession().getAttribute("user");
+        favouriteUserService.add(Integer.parseInt(uid), user.getUid());
     }
 }

@@ -1,6 +1,7 @@
 package com.jiading.service.impl;
 
 
+import com.jiading.dao.FavouriteUserDao;
 import com.jiading.dao.UserDao;
 import com.jiading.domain.User;
 import com.jiading.service.UserService;
@@ -8,6 +9,8 @@ import com.jiading.util.MailUtils;
 import com.jiading.util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -56,4 +59,5 @@ public class UserServiceImpl implements UserService {
     public User login(User user) {
         return userDao.findByUsernameAndPassword(user);
     }
+
 }

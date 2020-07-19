@@ -21,6 +21,9 @@ public class Post implements Serializable {
     private boolean isCanShow;//是否显示
     private int view;//浏览量
 
+    public Post() {
+    }
+
     public Post(int pid, int uid, int bid, String summary, String content, String title, String date, String image, boolean isCanShow, int view) {
         this.pid = pid;
         this.uid = uid;

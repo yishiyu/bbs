@@ -1,19 +1,18 @@
 package com.jiading.dao;
 
 
-import com.jiading.domain.FavoriteUser;
+import com.jiading.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface FavouriteUserDao {
-    @Select("select * from FAVORITE_UID where uid=#{uid}")
-    public List<FavoriteUser> findByUid(@Param("uid") Integer uid);
+    @Select("select * from user where uid in (select LIKEDUID from FAVORITE_UID where uid=#{uid})")
+    public List<User> findByUid(@Param("uid") Integer uid);
 
     @Select("select count(*) from FAVORITE_UID where uid=#{uid}")
     public int findCount(@Param("uid") Integer uid);
@@ -22,5 +21,7 @@ public interface FavouriteUserDao {
     void add(@Param("uid") Integer uid, @Param("date") String date, @Param("linkedUid") Integer linkedUid);
 
     @Select("select * from FAVORITE_UID where uid=#{uid} and linkeduid=#{linkedUid}")
-    public FavoriteUser findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
+    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
+
+
 }

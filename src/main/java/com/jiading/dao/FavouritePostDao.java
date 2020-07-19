@@ -1,7 +1,7 @@
 package com.jiading.dao;
 
 
-import com.jiading.domain.FavoritePost;
+import com.jiading.domain.Post;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -12,8 +12,8 @@ import java.util.List;
 
 @Repository
 public interface FavouritePostDao {
-    @Select("select * from FAVORITE_PID where uid=#{uid}")
-    public List<FavoritePost> findByUid(@Param("uid") Integer uid);
+    @Select("select * from posts where pid in ( select pid from FAVORITE_PID where uid=#{uid})")
+    public List<Post> findByUid(@Param("uid") Integer uid);
 
 
     @Select("select count(*) from FAVORITE_PID where uid=#{uid}")
@@ -30,5 +30,6 @@ public interface FavouritePostDao {
     void add(@Param("uid") Integer uid, @Param("pid") Integer pid, @Param("date") String date);
 
     @Select("select * from FAVORITE_PID where uid=#{uid} and pid=#{pid}")
-    public FavoritePost findByPidAndUid(@Param("uid") int uid, @Param("pid") int pid);
+    public Post findByPidAndUid(@Param("uid") int uid, @Param("pid") int pid);
+
 }

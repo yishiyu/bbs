@@ -4,6 +4,8 @@ package com.jiading.service;
 import com.jiading.domain.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("userService")
 public interface UserService {
 
@@ -12,4 +14,5 @@ public interface UserService {
     boolean active(String code, String username);
 
     User login(User user);
+
 }
