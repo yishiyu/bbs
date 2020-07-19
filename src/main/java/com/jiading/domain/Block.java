@@ -43,4 +43,13 @@ public class Block implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    @Override
+    public String toString() {
+        return "Block{" +
+                "bid=" + bid +
+                ", blockName='" + blockName + '\'' +
+                ", logo='" + logo + '\'' +
+                '}';
+    }
 }

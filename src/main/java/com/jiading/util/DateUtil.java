@@ -11,11 +11,13 @@ import java.util.Date;
  * @create: 2020-07-18 16:24
  **/
 public class DateUtil {
-    static DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static String getStringTimeNow(){
+    static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    public static String getStringTimeNow() {
         return df.format(new Date());
     }
-    public static String getStringTime(Date date){
+
+    public static String getStringTime(Date date) {
         return df.format(date);
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserDao userDao ;
+    UserDao userDao;
 
     /*
     注册用户
@@ -32,21 +32,21 @@ public class UserServiceImpl implements UserService {
             user.setStatus("N");
             userDao.saveUser(user);
             //发送激活邮件
-            String context = "<a href='http://localhost/travel/user/active?code=" + user.getCode() + "&username="+byUsername+">点击激活【黑马旅游网】</a>";
-            MailUtils.sendMail(user.getEmail(),context,"激活邮件");
+            String context = "<a href='http://localhost/travel/user/active?code=" + user.getCode() + "&username=" + byUsername + ">点击激活【黑马旅游网】</a>";
+            MailUtils.sendMail(user.getEmail(), context, "激活邮件");
             return true;
         }
     }
 
     @Override
-    public boolean active(String code,String username) {
+    public boolean active(String code, String username) {
         //1.根据激活码查询用户对象
-        User user=userDao.findByCodeAndUsername(code,username);
+        User user = userDao.findByCodeAndUsername(code, username);
         //2.调用dao的修改激活状态的方法
-        if(user!=null){
+        if (user != null) {
             userDao.updateStatus(user);
             return true;
-        }else{
+        } else {
             return false;
         }
 

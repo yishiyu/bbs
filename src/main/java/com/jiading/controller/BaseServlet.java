@@ -15,12 +15,14 @@ import java.io.IOException;
  * 我们写的Servlet不再继承自HttpServlet，而是继承这个我们写的BaseServlet
  * BaseServlet继承自HttpServlet，对原有方法改造以完成方法的分发
  * 注意我们并不配置BaseServlet的注解，因为我们不希望它被直接访问到，它只是用来被继承的
+ * checked:7/18
  */
 @Controller
 public class BaseServlet extends HttpServlet {
     /**
      * 这里我们没有选择springMVC的Conytroller和jsp之间的数据传递方法，也就是使用Model传递数据，而是依然使用了普通的json，
      * 使用jackson将对象转换为json,然后使用jackson的writeValue方法将json写回response中供前台jquery调用
+     *
      * @param obj
      * @param response
      * @throws IOException
@@ -32,14 +34,15 @@ public class BaseServlet extends HttpServlet {
         Jackson是著名的将java对象转换为json类型的工具
         ObjectMapper是jackson的核心对象
          */
-        ObjectMapper mapper=new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
         //手动设置返回值类型
         response.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(response.getOutputStream(),obj);
+        mapper.writeValue(response.getOutputStream(), obj);
     }
+
     //将传入的对象序列化为json并返回给调用者
     public String writeValueAsString(Object obj) throws JsonProcessingException {
-        ObjectMapper mapper=new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
         String s = mapper.writeValueAsString(obj);
         return s;
     }

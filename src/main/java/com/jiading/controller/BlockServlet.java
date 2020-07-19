@@ -28,7 +28,7 @@ public class BlockServlet extends BaseServlet {
     @RequestMapping("/findAll")
     public void findAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
         all = service.findAll();
-        writeValue(all,response);
+        writeValue(all, response);
     }
 
     /**
