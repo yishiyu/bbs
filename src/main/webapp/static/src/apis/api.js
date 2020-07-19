@@ -43,6 +43,44 @@ export const cancelFavourite = pid => {
   return axios.post("post/cancelFavourite", Qs.stringify({ pid }));
 };
 
-export const addFavourite = pid => {
+export const addFavouritePost = pid => {
   return axios.post("post/addFavourite", Qs.stringify({ pid }));
+};
+
+// 获取所有收藏的文章
+export const getAllLikedPosts = () => {
+  return axios.post("post/likedPosts");
+};
+
+// 获取我的文章
+export const getMyPosts = () => {
+  return axios.post("post/myPosts");
+};
+// 注册和登录api
+export const register = (username, password, email) => {
+  return axios.post(
+    "user/register",
+    Qs.stringify({ username, password, email })
+  );
+};
+
+export const exit = () => {
+  return axios.post("user/exit");
+};
+export const findUser = uid => {
+  return axios.post("user/findUser", Qs.stringify({ uid }));
+};
+export const login = (username, password, checkCode) => {
+  return axios.post(
+    "user/login",
+    Qs.stringify({ username, password, checkCode })
+  );
+};
+
+export const getLikedPeople = () => {
+  return axios.post("user/likedPeople");
+};
+
+export const addFavouriteUser = uid => {
+  return axios.post("user/addFavorite", Qs.stringify({ uid }));
 };
