@@ -19,6 +19,10 @@ public class BlockServlet extends BaseServlet {
     BlockService service;
     List<Block> all;
 
+    /*
+    TODO
+    返回某个板块的横幅和文字介绍
+     */
     /**
      * 获取所有板块
      * @param request

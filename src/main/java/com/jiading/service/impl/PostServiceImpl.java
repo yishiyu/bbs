@@ -53,4 +53,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> findAllByUid(String uid) {
         return postDao.findAllByUid(uid);
     }
+
+    @Override
+    public List<Post> findAllByUid(int uid) {
+        return postDao.findAllByUid(String.valueOf(uid));
+    }
 }
