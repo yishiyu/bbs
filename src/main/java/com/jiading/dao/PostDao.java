@@ -2,6 +2,7 @@ package com.jiading.dao;
 
 import com.jiading.domain.Post;
 import com.jiading.domain.Reply;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,13 +13,18 @@ import java.util.List;
 
 @Repository
 public interface PostDao {
+
+    // TODO: 2020/7/20  select count(*) from posts where bid=1 and title like %'好吃的'%;
+    // 注意百分号和引号位置
+    // 下同理
+
     @Select("select count(*) from posts where bid=#{bid} and title like %#{title}%")
     int findTotalCountByTitleKeyWordAndBlock(Post post);
 
     @Select("select * from posts where bid=#{bid} and title like %#{title}% limit #{start},#{pageSize}")
     List<Post> findByPageInSearch(Post post, @Param("start") int start, @Param("pageSize") int pageSize);
 
-    @Select("select * from posts where bid=#{bid}  limit #{start},#{pageSize}")
+    @Select("select * from posts where bid=#{bid} limit #{start},#{pageSize}")
     List<Post> findByPageInBlockView(@Param("bid") int bid, @Param("start") int start, @Param("pageSize") int pageSize);
 
     @Select("select * from posts where pid=#{pid}")
@@ -27,7 +33,7 @@ public interface PostDao {
     @Select("select * from posts where uid=#{uid}")
     List<Post> findAllByUid(@Param("uid") String uid);
 
-    @Select("select * from posts where uid=#{uid}  limit #{start},#{pageSize}")
+    @Select("select * from posts where uid=#{uid} limit #{start},#{pageSize}")
     List<Post> findAllByUidInPages(@Param("uid") int uid, @Param("start") int start, @Param("pageSize") int pageSize);
 
     @Select("select count(*) from posts where uid=#{uid}")
@@ -46,7 +52,7 @@ public interface PostDao {
     @Insert("insert into posts('UID','BID','TITLE','ABSTRACT','CONTENT','TIME','VIEW','LIKED')values(#{uid},#{bid},#{title},#{abstract},#{content},#{time},0,0)")
     void writePost(@Param("uid") int uid, @Param("bid") Integer bid, @Param("title") String title, @Param("summary") String summary, @Param("content") String content, @Param("time") String TimeNow);
 
-    @Insert("insert into reply('UID','PID','CONTENT','TIME') values(#{uid},#{pid},#{text},#{time})")
+    @Insert("insert into reply('UID','PID','CONTENT','TIME') values (#{uid},#{pid},#{text},#{time})")
     void writeComment(@Param("uid") int uid, @Param("pid") int pid, @Param("text") String text, @Param("time") String time);
 
     @Select("select * from reply where pid=#{pid} order by time")
