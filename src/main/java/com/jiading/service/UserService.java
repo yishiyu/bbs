@@ -18,4 +18,12 @@ public interface UserService {
     User findByUsername(String username);
 
     void updateUser(User user);
+
+    void likedPostAddOneToUserBean(String pid);
+
+    void likedPostSubOneToUserBean(String pid);
+
+    void likedUserSubOneToUserBean(String uid);
+
+    void likedUserAddOneToUserBean(String uid);
 }

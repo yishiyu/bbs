@@ -1,7 +1,5 @@
-package com.yishiyu.util;
+package com.jiading.util;
 
-import com.jiading.util.QiniuyunUtil;
-import com.qiniu.util.Auth;
 import org.junit.Test;
 
 import java.io.FileInputStream;
@@ -12,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 public class QiniuyunUtilTest {
     @Test
     public void testUploadFile(){
-        String string = QiniuyunUtil.uploadObject("F:\\Code\\由比滨结衣\\3.jpg");
+        String string = QiniuyunUtil.uploadObject("E:\\安装步骤.jpg");
         System.out.println(string);
     }
 
@@ -24,7 +22,7 @@ public class QiniuyunUtilTest {
 
     @Test
     public void testUploadStream() throws FileNotFoundException {
-        InputStream inputStream = new FileInputStream("F:\\Code\\由比滨结衣\\2.jpg");
+        InputStream inputStream = new FileInputStream("E:\\安装步骤.jpg");
         String string = QiniuyunUtil.uploadObject(inputStream);
         System.out.println(string);
     }

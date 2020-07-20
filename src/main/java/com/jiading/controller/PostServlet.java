@@ -6,6 +6,7 @@ import com.jiading.domain.Reply;
 import com.jiading.domain.User;
 import com.jiading.service.FavouritePostService;
 import com.jiading.service.PostService;
+import com.jiading.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,8 @@ import java.util.List;
 public class PostServlet extends BaseServlet {
     @Autowired
     private PostService postService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private FavouritePostService favouritePostService;
     public static int NOLOGIN = -1;
@@ -161,7 +164,7 @@ public class PostServlet extends BaseServlet {
     }
 
     /**
-     * @Description: 取消收藏，收藏量减一
+     * @Description: 取消收藏，收藏量减一,post的用户的收藏量也减一
      * @Param: [req, resp]
      * @return: void
      * @Author: JiaDing
@@ -173,10 +176,11 @@ public class PostServlet extends BaseServlet {
         User user = (User) req.getSession().getAttribute("user");
         favouritePostService.cancelLike(Integer.valueOf(pid), user.getUid());
         postService.likedSubOne(pid);
+        userService.likedPostSubOneToUserBean(pid);
     }
 
     /**
-     * @Description: 添加收藏，该文章的收藏量同时加一
+     * @Description: 添加收藏，该文章的收藏量同时加一，给该文章的发布用户的myPostsLikedTime字段也加一
      * @Param: [req, resp]
      * @return: void
      * @Author: JiaDing
@@ -188,6 +192,20 @@ public class PostServlet extends BaseServlet {
         User user = (User) req.getSession().getAttribute("user");
         favouritePostService.add(Integer.parseInt(pid), user.getUid());
         postService.likedAddOne(pid);
+        userService.likedPostAddOneToUserBean(pid);
+    }
+    /**
+    * @Description: 输入n，返回n个收藏最多的帖子
+    * @Param: [req, resp]
+    * @return: void
+    * @Author: JiaDing
+    * @Date: 2020/7/20
+    */
+    @RequestMapping("/nMostPopularPosts")
+    public void nMostPopularPosts(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        String n=req.getParameter("n");
+        List<Post> list=postService.getNMostPopularPosts(Integer.valueOf(n));
+        writeValue(list,resp);
     }
 
     /**
@@ -303,7 +321,7 @@ public class PostServlet extends BaseServlet {
     @RequestMapping("/allCommentsInThisPost")
     public void allCommentsInThisPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pid = req.getParameter("pid");
-        List<Reply> list = postService.allCommentsInThisPost(Integer.parseInt(pid));
+        List<Reply> list = postService.allCommentsInThisPost(pid);
         writeValue(list, resp);
     }
 

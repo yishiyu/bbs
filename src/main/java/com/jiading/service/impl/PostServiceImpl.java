@@ -54,24 +54,30 @@ public class PostServiceImpl implements PostService {
         postDao.writeComment(uid, pid, text, DateUtil.getStringTimeNow());
     }
 
+
     @Override
-    public List<Reply> allCommentsInThisPost(Integer pid) {
-        return postDao.allCommentsInThisPost(pid);
+    public List<Reply> allCommentsInThisPost(String pid) {
+        return postDao.allCommentsInThisPost(Integer.valueOf(pid));
     }
 
     @Override
-    public void viewAddOne(Integer pid) {
-        postDao.viewAddOne(pid);
+    public void viewAddOne(String pid) {
+        postDao.viewAddOne(Integer.valueOf(pid));
     }
 
     @Override
-    public void likedSubOne(Integer pid) {
-        postDao.likedSubOne(pid);
+    public void likedSubOne(String pid) {
+        postDao.likedSubOne(Integer.valueOf(pid));
     }
 
     @Override
-    public void likedAddOne(Integer pid) {
-        postDao.likedAddOne(pid);
+    public void likedAddOne(String pid) {
+        postDao.likedAddOne(Integer.valueOf(pid));
+    }
+
+    @Override
+    public List<Post> getNMostPopularPosts(Integer n) {
+        return postDao.nMostPopularPosts(n);
     }
 
     @Override
