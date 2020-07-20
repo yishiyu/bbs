@@ -90,6 +90,7 @@
   </div>
 </template>
 <script>
+import { findAllBlocks } from "../../apis/api";
 import home_header from "../common/Header";
 import home_footer from "../common/Footer";
 import carousel from "../common/carousel";
@@ -100,52 +101,11 @@ export default {
     return {
       blocks: [
         {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
+          blockName: "test",
+          logo: "http://gittub.cc/small2.png",
           introduction: "",
+          bid: "",
           url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/block/111"
-        },
-        {
-          name: "test",
-          imgurl: "http://gittub.cc/small2.png",
-          introduction: "",
-          url: "/blocks/111"
         }
       ],
       fashion: [
@@ -179,7 +139,11 @@ export default {
     onReset() {},
     onSubmit() {}
   },
-  mounted() {}
+  mounted() {
+    findAllBlocks.then(res => {
+      this.blocks = res.data;
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>

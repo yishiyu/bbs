@@ -36,7 +36,7 @@
           <template v-slot:button-content>
             <em>我</em>
           </template>
-          <b-dropdown-item v-if="logged" to="/userhome">用户</b-dropdown-item>
+          <b-dropdown-item v-if="logged" :to="userhome">用户</b-dropdown-item>
           <b-dropdown-item v-if="logged" @click="exit">登出</b-dropdown-item>
           <b-dropdown-item v-if="unlogged" to="/signin">注册</b-dropdown-item>
           <b-dropdown-item v-if="unlogged" to="/login">登录</b-dropdown-item>
@@ -46,6 +46,7 @@
   </b-navbar>
 </template>
 <script>
+import { getAllBlocks } from "../../apis/api";
 export default {
   data() {
     return {
@@ -77,10 +78,21 @@ export default {
     },
     unlogged() {
       return !this.logged;
+    },
+    userhome() {
+      return "/userHome/" + this.$store.getters.getId;
     }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    getAllBlocks().then(res => {
+      for (var i = 0; i < res.data.length; i++) {
+        this.blocks.push({
+          value: res.data[i].blockName,
+          text: res.data[i].blockName
+        });
+      }
+    });
   }
 };
 </script>

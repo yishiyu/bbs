@@ -31,20 +31,21 @@ const routes = [
     redirect: "/admin/dashboard"
   },
   {
+    path: "/block/:block_id",
+    redirect: "/block/:block_id/1"
+  },
+  {
     path: "/block/:block_id/:count",
     name: "block",
     component: () => import("../components/block/showpages")
   },
+
   {
-    path: "/block/:block_id/",
-    redirect: "/block/:block_id/1"
+    path: "/userHome/:userId",
+    redirect: "/userHome/:userId/profile"
   },
   {
-    path: "/userHome",
-    redirect: "/userHome/profile"
-  },
-  {
-    path: "/userHome",
+    path: "/userHome/:userId",
     name: "userhome",
     component: () => import("../components/userHome/userhome"),
     children: [

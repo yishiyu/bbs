@@ -15,7 +15,9 @@
         <div>
           <br />
           <img src="" style="width:200px;height:200px;display:block" alt="" />
-          <b-button variant="success">更改头像</b-button>
+          <b-button @click="submitIcon" v-if="currUser" variant="success"
+            >更改头像</b-button
+          >
         </div>
       </b-col>
       <b-col md="8">
@@ -36,7 +38,10 @@
                     <b-form-input v-model="userName"></b-form-input>
 
                     <b-input-group-append>
-                      <b-button variant="outline-secondary" @click="submit"
+                      <b-button
+                        variant="outline-secondary"
+                        v-if="currUser"
+                        @click="submit"
                         >更改</b-button
                       >
                     </b-input-group-append>
@@ -99,6 +104,8 @@
 export default {
   data() {
     return {
+      iconUrl: "",
+      userId: "111",
       userName: "test",
       password: "111",
       introduction: "这个人什么也没留下。。。",
@@ -109,6 +116,9 @@ export default {
   computed: {
     show() {
       return !this.input;
+    },
+    currUser() {
+      return this.userId == this.$state.getters.getId;
     }
   },
   methods: {

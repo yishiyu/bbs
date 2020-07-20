@@ -25,10 +25,7 @@ export default new Vuex.Store({
     user: {
       userName: "测试用户名",
       iconUrl: "",
-      userId: ""
-    },
-    visit: {
-      userId: ""
+      userId: "111"
     },
     scroll: 0,
     maxPageNum: 3,
@@ -59,6 +56,9 @@ export default new Vuex.Store({
     },
     getIcon: state => {
       return state.user.iconUrl;
+    },
+    getId: state => {
+      return state.user.userId;
     }
   }
 });
