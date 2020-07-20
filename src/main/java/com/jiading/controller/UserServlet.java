@@ -166,11 +166,12 @@ public class UserServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping("/addFavourite")
-    public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
+    public void addFavourite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String uid = req.getParameter("uid");
         User user = (User) req.getSession().getAttribute("user");
         favouriteUserService.add(Integer.parseInt(uid), user.getUid());
         service.likedUserAddOneToUserBean(uid);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
 
@@ -185,11 +186,12 @@ public class UserServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping(value = "/deleteFavourite", method = RequestMethod.POST)
-    public void deleteFavourite(HttpServletRequest req, HttpServletResponse resp) {
+    public void deleteFavourite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String uid = req.getParameter("uid");
         User user = (User) req.getSession().getAttribute("user");
         favouriteUserService.delete(Integer.parseInt(uid), user.getUid());
         service.likedUserSubOneToUserBean(uid);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
 
@@ -219,11 +221,12 @@ public class UserServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping(value = "/modifyUserComment", method = RequestMethod.POST)
-    public void modifyUserComment(HttpServletRequest req, HttpServletResponse resp){
+    public void modifyUserComment(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User user = (User) req.getSession().getAttribute("user");
         String comment = req.getParameter("comment");
         user.setComment(comment);
         service.updateUser(user);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
 
@@ -255,11 +258,12 @@ public class UserServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping(value = "/modifyPassword", method = RequestMethod.POST)
-    public void modifyPassword(HttpServletRequest req, HttpServletResponse resp) {
+    public void modifyPassword(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String password = req.getParameter("password");
         User user = (User) req.getSession().getAttribute("user");
         user.setPassword(password);
         service.updateUser(user);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
 
@@ -277,12 +281,13 @@ public class UserServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping(value = "/uploadHeadPortrait", method = RequestMethod.POST)
-    public void uploadHeadPortrait(MultipartFile file, HttpServletRequest req) throws IOException {
+    public void uploadHeadPortrait(MultipartFile file, HttpServletRequest req,HttpServletResponse resp) throws IOException {
         InputStream inputStream = file.getInputStream();
         String head_portrait = QiniuyunUtil.uploadObject(inputStream);
         User user = (User) req.getSession().getAttribute("user");
         user.setHead_portrait(head_portrait);
         service.updateUser(user);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
 }
