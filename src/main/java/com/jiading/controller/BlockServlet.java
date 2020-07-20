@@ -1,7 +1,7 @@
 package com.jiading.controller;
 
 
-import com.jiading.domain.Block;
+import com.jiading.model.Block;
 import com.jiading.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

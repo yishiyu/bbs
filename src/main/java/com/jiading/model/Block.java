@@ -1,4 +1,4 @@
-package com.jiading.domain;
+package com.jiading.model;
 
 import java.io.Serializable;
 

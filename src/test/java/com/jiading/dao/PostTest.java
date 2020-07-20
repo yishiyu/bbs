@@ -1,10 +1,8 @@
 package com.jiading.dao;
 
-import com.jiading.domain.Post;
-import com.jiading.domain.Reply;
+import com.jiading.model.Post;
+import com.jiading.model.Reply;
 import com.jiading.util.DateUtil;
-import com.sun.xml.internal.bind.v2.TODO;
-import javafx.geometry.Pos;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -144,16 +142,15 @@ public class PostTest extends BaseTest {
     }
     @Test
     public void testWritePostEnglish() {
-        // 查找 pid == 2
         String time = DateUtil.getStringTimeNow();
         // 没有返回pid,没办法查看是否插入成功,需要手动到数据库查看...
         // 正常插入
         postDao.writePost(
                 1,
                 1,
-                "Thisis an article",
-                "Thisis a summary",
-                "Thisis a content",
+                "Thisisanarticle",
+                "Thisisasummary",
+                "Thisisacontent",
                 time
         );
         System.out.println("第一个插入成功");
@@ -161,9 +158,9 @@ public class PostTest extends BaseTest {
         postDao.writePost(
                 1,
                 1,
-                "Thisisan article",
-                "Thisis a summary",
-                "Thisis a content",
+                "Thisisanarticle",
+                "Thisisasummary",
+                "Thisisacontent",
                 time
         );
         System.out.println("第二个插入成功");

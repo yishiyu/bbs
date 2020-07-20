@@ -1,7 +1,7 @@
 package com.jiading.dao;
 
 
-import com.jiading.domain.User;
+import com.jiading.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

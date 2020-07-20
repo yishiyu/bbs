@@ -2,7 +2,7 @@ package com.jiading.service.impl;
 
 
 import com.jiading.dao.FavouriteUserDao;
-import com.jiading.domain.User;
+import com.jiading.model.User;
 import com.jiading.service.FavouriteUserService;
 import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;

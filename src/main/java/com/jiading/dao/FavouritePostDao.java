@@ -1,7 +1,7 @@
 package com.jiading.dao;
 
 
-import com.jiading.domain.Post;
+import com.jiading.model.Post;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
