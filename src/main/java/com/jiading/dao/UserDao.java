@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao {
-    @Select("select * form user where uid=#{uid}")
+    @Select("select * from user where uid=#{uid}")
     public User findByUserId(@Param("uid") Integer uid);
 
     @Select("select * from user where username=#{user}")

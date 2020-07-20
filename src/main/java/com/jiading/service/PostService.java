@@ -26,7 +26,7 @@ public interface PostService {
 
     void writeComment(int uid, int pid, String text);
 
-    List<Reply> allCommentsInThisPost(int pid);
+    List<Reply> allCommentsInThisPost(String pid);
 
     void viewAddOne(String pid);
 

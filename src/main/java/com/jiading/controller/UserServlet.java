@@ -31,7 +31,6 @@ public class UserServlet extends BaseServlet {
     private FavouriteUserService favouriteUserService;
 
     /**
-     * TODO
      *
      * @Description: 尝试注册，给前端返回false或者true.如果注册失败（也就是用户名重复）则回滚
      * @Param: [req, resp]
@@ -174,7 +173,6 @@ public class UserServlet extends BaseServlet {
     }
 
 
-    // TODO: 2020/7/19 取消关注一个用户
 
     /**
      * @Description: 把一个目标用户从本用户的关注列表中移除
@@ -192,7 +190,6 @@ public class UserServlet extends BaseServlet {
         favouriteUserService.delete(Integer.parseInt(uid), user.getUid());
     }
 
-    // TODO: 2020/7/19 查看用户资料
 
     /**
      * @Description: 根据提供的用户id查找特定用户
@@ -210,7 +207,6 @@ public class UserServlet extends BaseServlet {
     }
 
 
-    // TODO: 2020/7/19 修改用户签名
     /**
      * @Description: 修改用户的签名
      * @Param: 只接受post请求
@@ -228,7 +224,6 @@ public class UserServlet extends BaseServlet {
         service.updateUser(user);
     }
 
-    // TODO: 2020/7/19 查看是用户否已关注
 
     /**
      * @Description: 查看一个用户是否已关注
@@ -247,7 +242,6 @@ public class UserServlet extends BaseServlet {
         writeValue(isFavourite, resp);
     }
 
-    // TODO: 2020/7/19 修改密码
 
     /**
      * @Description: 修改用户密码
@@ -258,7 +252,7 @@ public class UserServlet extends BaseServlet {
      * @Author: Yishiyu
      * @Date: 2020/7/19
      */
-    @RequestMapping(value = "/isFavourite", method = RequestMethod.POST)
+    @RequestMapping(value = "/modifyPassword", method = RequestMethod.POST)
     public void modifyPassword(HttpServletRequest req, HttpServletResponse resp) {
         String password = req.getParameter("password");
         User user = (User) req.getSession().getAttribute("user");
