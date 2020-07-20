@@ -12,11 +12,11 @@ import java.util.List;
 
 @Repository
 public interface PostDao {
-    @Select("select count(*) from posts where bid=#{bid} and title like %#{title}%")
+    @Select("select count(*) from posts where bid=#{bid} and title like #{title}")
     int findTotalCountByTitleKeyWordAndBlock(Post post);
 
-    @Select("select * from posts where bid=#{bid} and title like %#{title}% limit #{start},#{pageSize}")
-    List<Post> findByPageInSearch(Post post, @Param("start") int start, @Param("pageSize") int pageSize);
+    @Select("select * from posts where bid=#{bid} and title like #{title} limit #{start},#{pageSize}")
+    List<Post> findByPageInSearch(@Param("bid")int bid, @Param("title")String title,@Param("start") int start, @Param("pageSize") int pageSize);
 
     @Select("select * from posts where bid=#{bid}  limit #{start},#{pageSize}")
     List<Post> findByPageInBlockView(@Param("bid") int bid, @Param("start") int start, @Param("pageSize") int pageSize);
@@ -44,7 +44,7 @@ public interface PostDao {
      * @Date: 2020/7/19
      */
     @Insert("insert into posts('UID','BID','TITLE','ABSTRACT','CONTENT','TIME','VIEW','LIKED')values(#{uid},#{bid},#{title},#{abstract},#{content},#{time},0,0)")
-    void writePost(@Param("uid") int uid, @Param("bid") Integer bid, @Param("title") String title, @Param("summary") String summary, @Param("content") String content, @Param("time") String TimeNow);
+    void writePost(@Param("uid") int uid, @Param("bid") Integer bid, @Param("title") String title, @Param("abstract") String summary, @Param("content") String content, @Param("time") String TimeNow);
 
     @Insert("insert into reply('UID','PID','CONTENT','TIME') values(#{uid},#{pid},#{text},#{time})")
     void writeComment(@Param("uid") int uid, @Param("pid") int pid, @Param("text") String text, @Param("time") String time);

@@ -2,6 +2,7 @@ package com.jiading.dao;
 
 import com.jiading.domain.Post;
 import com.jiading.domain.Reply;
+import com.jiading.util.DateUtil;
 import com.sun.xml.internal.bind.v2.TODO;
 import javafx.geometry.Pos;
 import org.junit.Test;
@@ -16,53 +17,54 @@ import java.util.Date;
  * @author: Yishiyu
  * @create: 2020-07-20 14:44
  **/
-public class PostTest {
+public class PostTest extends BaseTest {
 
     @Autowired
     PostDao postDao;
 
     @Test
-    public void testFindTotalCountByTitleKeyWordAndBlock(){
+    public void testFindTotalCountByTitleKeyWordAndBlock() {
         Post post = new Post();
 
         // 查找 1 + 学校
         post.setBid(1);
-        post.setTitle("学校");
-        System.out.println(
-                postDao.findTotalCountByTitleKeyWordAndBlock(post)
-        );
+        post.setTitle("%学校%");
+        int count = postDao.findTotalCountByTitleKeyWordAndBlock(post);
+        System.out.println(count);
+
 
         // 查找 1 + 吃
         post.setBid(1);
-        post.setTitle("吃");
+        post.setTitle("%吃%");
         System.out.println(
                 postDao.findTotalCountByTitleKeyWordAndBlock(post)
         );
     }
 
     @Test
-    public void testFindByPageInSearch(){
+    public void testFindByPageInSearch() {
         Post post = new Post();
         post.setBid(1);
-        post.setTitle("学校");
+        post.setTitle("%学校%");
         // 查找 1 + 学校
-        for (Post p : postDao.findByPageInSearch(post, 0, 2)) {
+        for (Post p : postDao.findByPageInSearch(post.getBid(), post.getTitle(), 0, 2)) {
             System.out.println(p);
         }
     }
 
     @Test
-    public void testFindByPageInBlockView(){
+    public void testFindByPageInBlockView() {
         Post post = new Post();
         post.setBid(1);
+        post.setTitle("%学校%");
         // 查找 bid == 1
-        for (Post p : postDao.findByPageInSearch(post, 0, 2)) {
+        for (Post p : postDao.findByPageInSearch(post.getBid(), post.getTitle(), 0, 2)) {
             System.out.println(p);
         }
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         Post post = new Post();
         int pid = 0;
         // 成功查找 pid = 5
@@ -80,7 +82,7 @@ public class PostTest {
     }
 
     @Test
-    public void testFindAllByUid(){
+    public void testFindAllByUid() {
         // 查找 uid == 2
         for (Post post : postDao.findAllByUid("2")) {
             System.out.println(post);
@@ -88,16 +90,16 @@ public class PostTest {
     }
 
     @Test
-    public void testFindAllByUidInPages(){
+    public void testFindAllByUidInPages() {
         // 查找 uid == 2
         int uid = 2;
-        for (Post post : postDao.findAllByUidInPages(uid,0,2)) {
+        for (Post post : postDao.findAllByUidInPages(uid, 0, 2)) {
             System.out.println(post);
         }
     }
 
     @Test
-    public void testCountAllByUid(){
+    public void testCountAllByUid() {
         // 查找 uid == 2
         int uid = 2;
         System.out.println(
@@ -106,7 +108,7 @@ public class PostTest {
     }
 
     @Test
-    public void testFindTotalCountByBlock(){
+    public void testFindTotalCountByBlock() {
         // 查找 bid == 1
         int bid = 1;
         System.out.println(
@@ -115,11 +117,9 @@ public class PostTest {
     }
 
     @Test
-    public void testWritePost(){
-        // 查找 pid == 2
-        Date date=new Date();
-        SimpleDateFormat temp=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  //这是24时
-        String time=temp.format(date);
+    public void testWritePostChinese() {
+
+        String time = DateUtil.getStringTimeNow();
         // 没有返回pid,没办法查看是否插入成功,需要手动到数据库查看...
         // 正常插入
         postDao.writePost(
@@ -130,6 +130,7 @@ public class PostTest {
                 "这是正文",
                 time
         );
+        System.out.println("第一个插入成功");
         // 重复插入
         postDao.writePost(
                 1,
@@ -139,13 +140,40 @@ public class PostTest {
                 "这又是正文",
                 time
         );
+        System.out.println("第二个插入合适");
+    }
+    @Test
+    public void testWritePostEnglish() {
+        // 查找 pid == 2
+        String time = DateUtil.getStringTimeNow();
+        // 没有返回pid,没办法查看是否插入成功,需要手动到数据库查看...
+        // 正常插入
+        postDao.writePost(
+                1,
+                1,
+                "Thisis an article",
+                "Thisis a summary",
+                "Thisis a content",
+                time
+        );
+        System.out.println("第一个插入成功");
+        // 重复插入
+        postDao.writePost(
+                1,
+                1,
+                "Thisisan article",
+                "Thisis a summary",
+                "Thisis a content",
+                time
+        );
+        System.out.println("第二个插入成功");
     }
 
     @Test
-    public void testWriteCommentAndAllCommentsInThisPost(){
-        Date date=new Date();
-        SimpleDateFormat temp=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  //这是24时
-        String time=temp.format(date);
+    public void testWriteCommentAndAllCommentsInThisPost() {
+        Date date = new Date();
+        SimpleDateFormat temp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  //这是24时
+        String time = temp.format(date);
 
         int pid = 1;
 
@@ -178,31 +206,31 @@ public class PostTest {
     }
 
     @Test
-    public void testModifyView(){
+    public void testModifyView() {
         int pid = 5;
         Post post = new Post();
         post.setPid(pid);
 
-        System.out.println("增加前"+postDao.findOne(post).getView());
+        System.out.println("增加前" + postDao.findOne(post).getView());
         postDao.viewAddOne(pid);
-        System.out.println("增加后"+postDao.findOne(post).getView());
-      }
-
-    @Test
-    public void testModifyLiked(){
-        int pid = 5;
-        Post post = new Post();
-        post.setPid(pid);
-
-        System.out.println("增加前"+postDao.findOne(post).getLiked());
-        postDao.likedAddOne(pid);
-        System.out.println("增加后"+postDao.findOne(post).getLiked());
-        postDao.likedSubOne(pid);
-        System.out.println("增加后减少"+postDao.findOne(post).getLiked());
+        System.out.println("增加后" + postDao.findOne(post).getView());
     }
 
     @Test
-    public void testNMostPopularPosts(){
+    public void testModifyLiked() {
+        int pid = 5;
+        Post post = new Post();
+        post.setPid(pid);
+
+        System.out.println("增加前" + postDao.findOne(post).getLiked());
+        postDao.likedAddOne(pid);
+        System.out.println("增加后" + postDao.findOne(post).getLiked());
+        postDao.likedSubOne(pid);
+        System.out.println("增加后减少" + postDao.findOne(post).getLiked());
+    }
+
+    @Test
+    public void testNMostPopularPosts() {
         for (Post post : postDao.nMostPopularPosts(3)) {
             System.out.println(post);
         }

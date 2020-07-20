@@ -88,13 +88,13 @@ public class PostServiceImpl implements PostService {
         pb.setPageSize(pageSize);
         Post post = new Post();
         post.setBid(bid);
-        post.setTitle(postNameKeyWord);
+        post.setTitle("%"+postNameKeyWord+"%");
         //设置总记录数
         int totalCount = postDao.findTotalCountByTitleKeyWordAndBlock(post);
         pb.setTotalCount(totalCount);
         //设置当前页显示的数据集合
         int start = (currentPage - 1) * pageSize;
-        List<Post> list = postDao.findByPageInSearch(post, start, pageSize);
+        List<Post> list = postDao.findByPageInSearch(post.getBid(),post.getTitle(), start, pageSize);
         pb.setList(list);
         //设置总页数
         int totalPage = totalCount % pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;

@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS USER(
 `STATUS` VARCHAR(5) DEFAULT 'N',
 `CODE` VARCHAR(10) DEFAULT NULL,
 `COMMENT` VARCHAR(50) DEFAULT '这个人很懒，什么都没有写',
+`LIKEDTIME` INT DEFAULT 0,
+`MYPOSTLIKEDTIME` INT DEFAULT 0,
 CONSTRAINT FOREIGN KEY(`HEAD_PORTRAIT`) REFERENCES IMAGES(`IID`),
 PRIMARY KEY(`UID`)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8;
@@ -95,12 +97,12 @@ INSERT INTO BLOCKS (`BLOCKNAME`, `LOGO`) VALUES
 ('政治', 1),
 ('学习', 1);
 
-INSERT INTO USER (`USERNAME`, `PASSWORD`, `EMAIL`, `HEAD_PORTRAIT`, `ADMIN_PERMISSION`, `STATUS`, `CODE`, `COMMENT`) VALUES
-('狗管理一号', SHA1('12345678'), '1146186018@qq.com', 2, 1, 'Y', 'QWER', '虽千万人吾亦往矣'),
-('狗管理二号', SHA1('87654321'), '814384981@qq.com', 3, 1, 'Y', 'tyui', '海不邀我自来也！！！'),
-('贾丁', SHA1('qwertyui'), '814384981@qq.com', 4, 0, 'Y', '1284', '别和我闹了'),
-('毕展语', SHA1('11111111'), '814384981@qq.com', 1, 0, 'Y', '1k4g', '让我们一起大喊——666！'),
-('李泽宇', SHA1('12345679'), '814384981@qq.com', 1, 0, 'N', 's8cr', '海上升明月');
+INSERT INTO USER (`USERNAME`, `PASSWORD`, `EMAIL`, `HEAD_PORTRAIT`, `ADMIN_PERMISSION`, `STATUS`, `CODE`, `COMMENT`, `LIKEDTIME`, `MYPOSTLIKEDTIME`) VALUES
+('狗管理一号', SHA1('12345678'), '1146186018@qq.com', 2, 1, 'Y', 'QWER', '虽千万人吾亦往矣', 2, 2),
+('狗管理二号', SHA1('87654321'), '814384981@qq.com', 3, 1, 'Y', 'tyui', '海不邀我自来也！！！', 2, 1),
+('贾丁', SHA1('qwertyui'), '814384981@qq.com', 4, 0, 'Y', '1284', '别和我闹了', 2, 3),
+('毕展语', SHA1('11111111'), '814384981@qq.com', 1, 0, 'Y', '1k4g', '让我们一起大喊——666！', 2, 3),
+('李泽宇', SHA1('12345679'), '814384981@qq.com', 1, 0, 'N', 's8cr', '海上升明月', 0, 0);
 
 INSERT INTO POSTS (`UID`, `BID`, `TITLE`, `ABSTRACT`, `CONTENT`, `TIME`, `SHOW`, `VIEW`, `LIKED`)VALUES
 (1, 1, '给大家介绍学校周边好吃的', '学校 周边 美食', '想来想去也不知道今天中午吃什么，于是我灵机一动，打算开个帖子说说学校周边的美食', '2020-7-16 14:05:20', 1, 20, 2),
