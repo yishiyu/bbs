@@ -16,14 +16,15 @@ public interface UserDao {
     @Select("select * from user where username=#{user}")
     public User findByUsername(@Param("user") String username);
 
-    @Insert("insert into user(username,password,head_portrait,admin_admin,email,status,code)values(#{username},#{password},#{head_portrait},#{admin_admin},#{email},#{status},#{code})")
+    @Insert("insert into user(username,password,head_portrait,admin_admin,email,status,code,comment)values(#{username},#{password},#{head_portrait},#{admin_admin},#{email},#{status},#{code},#{comment})")
     public void saveUser(User user);
 
     @Update("update set " +
             "username=#{username} " +
             "password=#{password} " +
             "head_portrait=#{head_portrait} " +
-            "admin_admin=#{admin_admin} where uid=#{uid}")
+            "admin_admin=#{admin_admin} where uid=#{uid} " +
+            "comment=#{comment};")
     public void updateUser(User user);
 
     @Select("select * from user where code=#{code}")

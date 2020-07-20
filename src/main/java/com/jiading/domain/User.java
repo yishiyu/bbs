@@ -16,6 +16,14 @@ public class User implements Serializable {
     private String code;//激活码
     private String comment;//个人签名
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public User(int uid, String username, String password, String head_portrait, boolean super_admin, String email, String status, String code) {
         this.uid = uid;
         this.username = username;

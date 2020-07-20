@@ -43,21 +43,21 @@ public interface PostDao {
      * @Author: JiaDing
      * @Date: 2020/7/19
      */
-    @Insert("insert into posts('UID','BID','TITLE','ABSTRACT','CONTENT','TIME','VIEW')values(#{uid},#{bid},#{title},#{abstract},#{content},#{time},0)")
+    @Insert("insert into posts('UID','BID','TITLE','ABSTRACT','CONTENT','TIME','VIEW','LIKED')values(#{uid},#{bid},#{title},#{abstract},#{content},#{time},0,0)")
     void writePost(@Param("uid") int uid, @Param("bid") Integer bid, @Param("title") String title, @Param("summary") String summary, @Param("content") String content, @Param("time") String TimeNow);
 
     @Insert("insert into reply('UID','PID','CONTENT','TIME') values(#{uid},#{pid},#{text},#{time})")
     void writeComment(@Param("uid") int uid, @Param("pid") int pid, @Param("text") String text, @Param("time") String time);
 
     @Select("select * from reply where pid=#{pid} order by time")
-    List<Reply> allCommentsInThisPost(@Param("pid") String pid);
+    List<Reply> allCommentsInThisPost(@Param("pid") Integer pid);
 
     @Update("update posts set view=view+1 where pid=#{pid}")
-    void viewAddOne(@Param("pid") String pid);
+    void viewAddOne(@Param("pid") Integer pid);
 
     @Update("update posts set liked=liked-1 where pid=#{pid}")
-    void likedSubOne(@Param("pid") String pid);
+    void likedSubOne(@Param("pid") Integer pid);
 
     @Update("update posts set liked=liked+1 where pid=#{pid}")
-    void likedAddOne(@Param("pid") String pid);
+    void likedAddOne(@Param("pid") Integer pid);
 }

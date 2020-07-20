@@ -175,72 +175,91 @@ public class UserServlet extends BaseServlet {
 
 
     // TODO: 2020/7/19 取消关注一个用户
+
     /**
-    * @Description: 把一个目标用户从本用户的关注列表中移除
+     * @Description: 把一个目标用户从本用户的关注列表中移除
      * @Param: 只接受post请求
-     *         uid待处理的用户对象
-     *         本用户id从session中获取,不用传入
-    * @return: void
-    * @Author: Yishiyu
-    * @Date: 2020/7/19
-    */
-    @RequestMapping(value = "/deleteFavourite" , method = RequestMethod.POST)
-    public void deleteFavourite(HttpServletRequest req, HttpServletResponse resp){
+     * uid待处理的用户对象
+     * 本用户id从session中获取,不用传入
+     * @return: void
+     * @Author: Yishiyu
+     * @Date: 2020/7/19
+     */
+    @RequestMapping(value = "/deleteFavourite", method = RequestMethod.POST)
+    public void deleteFavourite(HttpServletRequest req, HttpServletResponse resp) {
         String uid = req.getParameter("uid");
         User user = (User) req.getSession().getAttribute("user");
         favouriteUserService.delete(Integer.parseInt(uid), user.getUid());
     }
 
     // TODO: 2020/7/19 查看用户资料
+
     /**
-    * @Description: 根据提供的用户id查找特定用户
-    * @Param: 只接受post请求
-     *         uid ==> 用户id
-    * @return: 以json形式返回用户
-    * @Author: Yishiyu
-    * @Date: 2020/7/19
-    */
-    @RequestMapping(value = "/getUserInfoById" , method = RequestMethod.POST)
+     * @Description: 根据提供的用户id查找特定用户
+     * @Param: 只接受post请求
+     * uid ==> 用户id
+     * @return: 以json形式返回用户
+     * @Author: Yishiyu
+     * @Date: 2020/7/19
+     */
+    @RequestMapping(value = "/getUserInfoById", method = RequestMethod.POST)
     public void getUserInfoById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int uid = Integer.parseInt(req.getParameter("uid"));
         User user = service.findByUserId(uid);
-        writeValue(user,resp);
-}
+        writeValue(user, resp);
+    }
 
 
     // TODO: 2020/7/19 修改用户签名
-
+    /**
+     * @Description: 修改用户的签名
+     * @Param: 只接受post请求
+     *          用户的id根据session得到,不用传入
+     *          新签名封装在comment参数中
+     * @return: void
+     * @Author: Yishiyu
+     * @Date: 2020/7/19
+     */
+    @RequestMapping(value = "/modifyUserComment", method = RequestMethod.POST)
+    public void modifyUserComment(HttpServletRequest req, HttpServletResponse resp){
+        User user = (User) req.getSession().getAttribute("user");
+        String comment = req.getParameter("comment");
+        user.setComment(comment);
+        service.updateUser(user);
+    }
 
     // TODO: 2020/7/19 查看是用户否已关注
+
     /**
-    * @Description: 查看一个用户是否已关注
-    * @Param: 只接受post请求
-     *         uid待查询的用户对象
-     *         本用户id从session中获取,不用传入
-    * @return: 以json形式返回 "本用户" 是否已关注 "uid代表的用户"
-    * @Author: Yishiyu
-    * @Date: 2020/7/19
-    */
-    @RequestMapping(value = "/isFavourite" , method = RequestMethod.POST)
+     * @Description: 查看一个用户是否已关注
+     * @Param: 只接受post请求
+     * uid待查询的用户对象
+     * 本用户id从session中获取,不用传入
+     * @return: 以json形式返回 "本用户" 是否已关注 "uid代表的用户"
+     * @Author: Yishiyu
+     * @Date: 2020/7/19
+     */
+    @RequestMapping(value = "/isFavourite", method = RequestMethod.POST)
     public void isFavourite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User user = (User) req.getSession().getAttribute("user");
         int uid = Integer.parseInt(req.getParameter("uid"));
-        boolean isFavourite = favouriteUserService.isFavouriteUser(uid,user.getUid());
-        writeValue(isFavourite,resp);
+        boolean isFavourite = favouriteUserService.isFavouriteUser(uid, user.getUid());
+        writeValue(isFavourite, resp);
     }
 
     // TODO: 2020/7/19 修改密码
+
     /**
      * @Description: 修改用户密码
      * @Param: 只接受post请求
-     *         本用户id从session中获取,不用传入
-     *         password为新密码
+     * 本用户id从session中获取,不用传入
+     * password为新密码
      * @return:
      * @Author: Yishiyu
      * @Date: 2020/7/19
      */
-    @RequestMapping(value = "/isFavourite" , method = RequestMethod.POST)
-    public void modifyPassword(HttpServletRequest req, HttpServletResponse resp){
+    @RequestMapping(value = "/isFavourite", method = RequestMethod.POST)
+    public void modifyPassword(HttpServletRequest req, HttpServletResponse resp) {
         String password = req.getParameter("password");
         User user = (User) req.getSession().getAttribute("user");
         user.setPassword(password);
@@ -248,22 +267,22 @@ public class UserServlet extends BaseServlet {
     }
 
     // TODO: 2020/7/19 修改头像
+
     /**
      * @Description: 修改用户头像
-     * @前端示例代码:
-     *         <form action="http://localhost:8080/user/uploadHeadPortrait" method="post" enctype="multipart/form-data">
-     *             选择文件:<input type="file" name="file" width="120px">
-     *             <input type="submit" value="上传">
-     *         </form>
+     * @前端示例代码: <form action="http://localhost:8080/user/uploadHeadPortrait" method="post" enctype="multipart/form-data">
+     * 选择文件:<input type="file" name="file" width="120px">
+     * <input type="submit" value="上传">
+     * </form>
      * @Param: 只接受post请求
-     *         本用户id从session中获取,不用传入
-     *         不需要上传文件名称
+     * 本用户id从session中获取,不用传入
+     * 不需要上传文件名称
      * @return: void
      * @Author: Yishiyu
      * @Date: 2020/7/19
      */
-    @RequestMapping(value="/uploadHeadPortrait",method=RequestMethod.POST)
-    public void uploadHeadPortrait(MultipartFile file, HttpServletRequest req) throws IOException{
+    @RequestMapping(value = "/uploadHeadPortrait", method = RequestMethod.POST)
+    public void uploadHeadPortrait(MultipartFile file, HttpServletRequest req) throws IOException {
         InputStream inputStream = file.getInputStream();
         String head_portrait = QiniuyunUtil.uploadObject(inputStream);
         User user = (User) req.getSession().getAttribute("user");
