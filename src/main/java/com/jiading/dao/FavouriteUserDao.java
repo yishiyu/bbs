@@ -24,8 +24,6 @@ public interface FavouriteUserDao {
     @Delete("delete * from favourite_uid where uid=#{uid} and linkeduid=#{linkedUid}")
     void delete(@Param("uid") Integer uid , @Param("linkedUid") Integer linkedUid);
 
-    @Select("select * from FAVORITE_UID where uid=#{uid} and linkeduid=#{linkedUid}")
-    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
-
-
+//    @Select("select * from FAVORITE_UID where uid=#{uid} and linkeduid=#{linkedUid}")
+//    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
 }
