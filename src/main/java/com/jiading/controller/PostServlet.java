@@ -303,7 +303,7 @@ public class PostServlet extends BaseServlet {
     @RequestMapping("/allCommentsInThisPost")
     public void allCommentsInThisPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pid = req.getParameter("pid");
-        List<Reply> list = postService.allCommentsInThisPost(pid);
+        List<Reply> list = postService.allCommentsInThisPost(Integer.parseInt(pid));
         writeValue(list, resp);
     }
 
