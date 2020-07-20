@@ -5,31 +5,34 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isLogin: window.localStorage.getItem("isLogin" || "[]") == null ? "" : true,
-    user: {
-      userName:
-        window.localStorage.getItem("user" || "[]") == null
-          ? ""
-          : JSON.parse(window.localStorage.getItem("user" || "[]")).userName,
-      password:
-        window.localStorage.getItem("user" || "[]") == null
-          ? ""
-          : JSON.parse(window.localStorage.getItem("user" || "[]")).password,
+    // isLogin: window.localStorage.getItem("isLogin" || "[]") == null ? "" : true,
+    // user: {
+    //   userName:
+    //     window.localStorage.getItem("user" || "[]") == null
+    //       ? ""
+    //       : JSON.parse(window.localStorage.getItem("user" || "[]")).userName,
+    //   password:
+    //     window.localStorage.getItem("user" || "[]") == null
+    //       ? ""
+    //       : JSON.parse(window.localStorage.getItem("user" || "[]")).password,
 
-      userId:
-        window.localStorage.getItem("user" || "[]") == null
-          ? ""
-          : JSON.parse(window.localStorage.getItem("user" || "[]")).userId,
-      token:
-        window.localStorage.getItem("user" || "[]") == null
-          ? ""
-          : JSON.parse(window.localStorage.getItem("user" || "[]")).token
+    //   userId:
+    //     window.localStorage.getItem("user" || "[]") == null
+    //       ? ""
+    //       : JSON.parse(window.localStorage.getItem("user" || "[]")).userId
+    // },
+    isLogin: true,
+    user: {
+      userName: "测试用户名",
+      iconUrl: "",
+      userId: ""
     },
     visit: {
       userId: ""
     },
     scroll: 0,
-    maxPageNum: 3
+    maxPageNum: 3,
+    keyWord: ""
   },
   mutations: {
     login(state, user) {
@@ -47,6 +50,15 @@ export default new Vuex.Store({
   getters: {
     getScroll: state => {
       return state.scroll;
+    },
+    getLogState: state => {
+      return state.isLogin;
+    },
+    getName: state => {
+      return state.user.userName;
+    },
+    getIcon: state => {
+      return state.user.iconUrl;
     }
   }
 });

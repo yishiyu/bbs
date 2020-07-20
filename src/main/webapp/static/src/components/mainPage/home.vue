@@ -16,13 +16,14 @@
         <b-col md="8" id="carousel" class="incontainer">
           <carousel></carousel>
         </b-col>
-        <b-col md="4" id="fashion" class="rounded-lg incontainer">
-          <div>
+        <b-col md="4">
+          <div id="fashion">
             <ul>
               <router-link
                 v-for="(item, index) in fashion"
                 :key="index"
                 :to="item.url"
+                class="fashion_article"
               >
                 <li style="display: block;">
                   {{ item.title }}
@@ -37,7 +38,7 @@
       <b-row>
         <b-col
           class="nopadding rounded-top incontainer"
-          style="border: 0.5px ridge ;"
+          style="border: 0.5px lightgray ridge ;"
         >
           论坛版块
         </b-col>
@@ -188,14 +189,24 @@ export default {
 }
 
 #fashion {
-  border: 0.5px ridge white;
+  @include card;
   text-align: left;
+  padding: 10px;
   & ul {
     padding-left: 0;
   }
   & li {
-    border-bottom: 0.5px ridge;
+    border-bottom: 0.5px $background-color ridge;
     height: 50px;
+  }
+  .fashion_article {
+    margin: 10px;
+    color: black;
+    display: block;
+    &:hover {
+      text-decoration: none;
+      background-color: $background-color;
+    }
   }
 }
 

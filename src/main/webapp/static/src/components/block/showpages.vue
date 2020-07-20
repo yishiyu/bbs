@@ -66,22 +66,29 @@
           <div id="sider" class="rounded-lg shadow">
             <h1>我要发贴</h1>
             <b-form @submit="onSubmit" @reset="onReset">
-              <b-form-group label="发帖分区:" label-for="input-1">
-                <b-form-select
+              <b-form-group label="标题：" label-for="input-1">
+                <b-form-input
+                  v-model="form.title"
                   id="input-1"
-                  v-model="form.block"
-                  :options="block_names"
-                  required
-                >
-                </b-form-select>
+                  placeholder="Enter your name"
+                ></b-form-input>
               </b-form-group>
-              <b-form-textarea
-                id="textarea"
-                v-model="form.text"
-                placeholder="Enter something..."
-                rows="3"
-                max-rows="6"
-              ></b-form-textarea>
+              <b-form-group label="摘要：" label-for="input-1">
+                <b-form-input
+                  v-model="form.abstract"
+                  id="input-1"
+                  placeholder="Enter your name"
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group label="正文：" label-for="input-3">
+                <b-form-textarea
+                  id="input-3"
+                  v-model="form.text"
+                  placeholder="Enter something..."
+                  rows="3"
+                  max-rows="6"
+                ></b-form-textarea>
+              </b-form-group>
               <b-button type="submit" variant="primary">Submit</b-button>
               <b-button type="reset" variant="danger">Reset</b-button>
             </b-form>
@@ -111,8 +118,9 @@ export default {
       pages: [],
       block_introduction: "这是板块介绍介绍介绍",
       form: {
-        block: "",
-        user: "",
+        title: "",
+        abstract: "",
+
         text: ""
       },
       block_names: [{ text: "Select One", value: null }, "a", "b", "c"]
@@ -176,6 +184,7 @@ export default {
   }
 }
 #sider {
+  padding: 5%;
   position: sticky;
   background-color: white;
   top: 100px;

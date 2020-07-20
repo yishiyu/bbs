@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow:auto">
     <home_header></home_header>
     <b-container>
       <b-row>

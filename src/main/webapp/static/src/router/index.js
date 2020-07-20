@@ -57,6 +57,16 @@ const routes = [
         path: "posts",
         name: "posts",
         component: () => import("../components/userHome/posts")
+      },
+      {
+        path: "following",
+        name: "following",
+        component: () => import("../components/userHome/following")
+      },
+      {
+        path: "collection",
+        name: "collection",
+        component: () => import("../components/userHome/collection")
       }
     ]
   },
@@ -70,6 +80,16 @@ const routes = [
     path: "/signin",
     name: "signin",
     component: () => import("../components/login/signin")
+  },
+  {
+    path: "/aboutus",
+    name: "aboutus",
+    component: () => import("../components/about/about")
+  },
+  {
+    path: "*",
+    name: "404",
+    component: () => import("../components/notfound/notFound")
   }
 ];
 

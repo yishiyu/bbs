@@ -6,7 +6,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="#">关于俺们</b-nav-item>
+        <b-nav-item to="/aboutus">关于俺们</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -36,8 +36,10 @@
           <template v-slot:button-content>
             <em>我</em>
           </template>
-          <b-dropdown-item href="#">用户</b-dropdown-item>
-          <b-dropdown-item href="#">登出</b-dropdown-item>
+          <b-dropdown-item v-if="logged" to="/userhome">用户</b-dropdown-item>
+          <b-dropdown-item v-if="logged" @click="exit">登出</b-dropdown-item>
+          <b-dropdown-item v-if="unlogged" to="/signin">注册</b-dropdown-item>
+          <b-dropdown-item v-if="unlogged" to="/login">登录</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -47,8 +49,8 @@
 export default {
   data() {
     return {
-      isLogged: false,
-      curr_class: "up"
+      curr_class: "up",
+      blocks: []
     };
   },
   methods: {
@@ -59,6 +61,22 @@ export default {
       } else {
         this.curr_class = "up";
       }
+    },
+    exit() {}
+  },
+  computed: {
+    options() {
+      var res = [];
+      for (var i = 0; i < this.blocks.length; i++) {
+        res.push({ value: this.blocks[i].id, text: this.blocks[i].name });
+      }
+      return res;
+    },
+    logged() {
+      return this.$store.getters.getLogState;
+    },
+    unlogged() {
+      return !this.logged;
     }
   },
   mounted() {
