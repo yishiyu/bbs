@@ -33,4 +33,16 @@ public interface UserDao {
 
     @Select("select * from user where code=#{code} and username=#{username}")
     User findByCodeAndUsername(@Param("code") String code, @Param("username") String username);
+
+    @Update("update user set myPostsLikedTime=myPostsLikedTime+1 where uid in(select uid from FAVORITE_PID where pid=#{pid})")
+    void likedPostAddOneToUserBean(@Param("pid") Integer pid);
+
+    @Update("update user set myPostsLikedTime=myPostsLikedTime-1 where uid in(select uid from FAVORITE_PID where pid=#{pid})")
+    void likedPostSubOneToUserBean(@Param("pid")Integer pid);
+
+    @Update("update user set likedTime=likedTime-1 where uid=#{uid}")
+    void likedUserSubOneToUserBean(@Param("uid") Integer uid);
+
+    @Update("update user set likedTime=likedTime+1 where uid=#{uid}")
+    void likedUserAddOneToUserBean(@Param("uid") Integer uid);
 }

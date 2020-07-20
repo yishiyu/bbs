@@ -24,7 +24,7 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(int pid, int uid, int bid, String summary, String content, String title, String date, boolean isCanShow, int view) {
+    public Post(int pid, int uid, int bid, String summary, String content, String title, String date, boolean isCanShow, int view, int liked) {
         this.pid = pid;
         this.uid = uid;
         this.bid = bid;
@@ -34,6 +34,15 @@ public class Post implements Serializable {
         this.date = date;
         this.isCanShow = isCanShow;
         this.view = view;
+        this.liked = liked;
+    }
+
+    public int getLiked() {
+        return liked;
+    }
+
+    public void setLiked(int liked) {
+        this.liked = liked;
     }
 
     public int getPid() {

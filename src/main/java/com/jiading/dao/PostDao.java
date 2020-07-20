@@ -60,4 +60,8 @@ public interface PostDao {
 
     @Update("update posts set liked=liked+1 where pid=#{pid}")
     void likedAddOne(@Param("pid") Integer pid);
+
+    @Select("select * from posts order by posts.`liked` desc limit 0,#{n}")
+    List<Post> nMostPopularPosts(@Param("n")Integer n);
+
 }

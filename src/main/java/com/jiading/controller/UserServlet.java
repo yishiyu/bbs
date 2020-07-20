@@ -170,6 +170,7 @@ public class UserServlet extends BaseServlet {
         String uid = req.getParameter("uid");
         User user = (User) req.getSession().getAttribute("user");
         favouriteUserService.add(Integer.parseInt(uid), user.getUid());
+        service.likedUserAddOneToUserBean(uid);
     }
 
 
@@ -188,6 +189,7 @@ public class UserServlet extends BaseServlet {
         String uid = req.getParameter("uid");
         User user = (User) req.getSession().getAttribute("user");
         favouriteUserService.delete(Integer.parseInt(uid), user.getUid());
+        service.likedUserSubOneToUserBean(uid);
     }
 
 
@@ -260,7 +262,6 @@ public class UserServlet extends BaseServlet {
         service.updateUser(user);
     }
 
-    // TODO: 2020/7/19 修改头像
 
     /**
      * @Description: 修改用户头像

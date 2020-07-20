@@ -33,4 +33,6 @@ public interface PostService {
     void likedSubOne(String pid);
 
     void likedAddOne(String pid);
+
+    List<Post> getNMostPopularPosts(Integer valueOf);
 }

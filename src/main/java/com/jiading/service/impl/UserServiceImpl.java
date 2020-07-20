@@ -73,4 +73,31 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
+    /**
+    * @Description: 根据pid查到这个用户，给这个用户的myPostsLikedTime字段加一，当然在sql里都能完成
+    * @Param: [pid]
+    * @return: void
+    * @Author: JiaDing
+    * @Date: 2020/7/20
+    */
+    @Override
+    public void likedPostAddOneToUserBean(String pid) {
+        userDao.likedPostAddOneToUserBean(Integer.valueOf(pid));
+    }
+
+    @Override
+    public void likedPostSubOneToUserBean(String pid) {
+        userDao.likedPostSubOneToUserBean(Integer.valueOf(pid));
+    }
+
+    @Override
+    public void likedUserSubOneToUserBean(String uid) {
+        userDao.likedUserSubOneToUserBean(Integer.valueOf(uid));
+    }
+
+    @Override
+    public void likedUserAddOneToUserBean(String uid) {
+        userDao.likedUserAddOneToUserBean(Integer.valueOf(uid));
+    }
+
 }

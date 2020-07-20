@@ -76,6 +76,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getNMostPopularPosts(Integer n) {
+        return postDao.nMostPopularPosts(n);
+    }
+
+    @Override
     public PageBean<Post> pageQueryForSearch(int bid, int currentPage, int pageSize, String postNameKeyWord) {
         //封装PageBean
         PageBean<Post> pb = new PageBean<Post>();
