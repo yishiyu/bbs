@@ -4,9 +4,7 @@ package com.jiading.service;
 import com.jiading.domain.User;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
-@Service("userService")
 public interface UserService {
 
     boolean register(User user);
@@ -15,4 +13,9 @@ public interface UserService {
 
     User login(User user);
 
+    User findByUserId(int uid);
+
+    User findByUsername(String username);
+
+    void updateUser(User user);
 }

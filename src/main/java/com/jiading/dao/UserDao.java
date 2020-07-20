@@ -10,11 +10,17 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao {
+    @Select("select * from user where uid=#{uid}")
+    public User findByUserId(@Param("uid") Integer uid);
+
     @Select("select * from user where username=#{user}")
     public User findByUsername(@Param("user") String username);
 
-    @Insert("insert into user(username,password,head_portrait,admin_admin,email,status,code)values(#{username},#{password},#{head_portrait},#{admin_admin},#{email},#{status},#{code})")
+    @Insert("insert into user(username,password,head_portrait,ADMIN_PERMISSION,email,status,code,comment)values(#{username},#{password},#{head_portrait},#{admin_permission},#{email},#{status},#{code},#{comment})")
     public void saveUser(User user);
+
+    @Update("update user set username=#{username},password=#{password},head_portrait=#{head_portrait},admin_permission=#{admin_permission},comment=#{comment} where uid=#{uid}")
+    public void updateUser(User user);
 
     @Select("select * from user where code=#{code}")
     User findByCode(@Param("code") String code);

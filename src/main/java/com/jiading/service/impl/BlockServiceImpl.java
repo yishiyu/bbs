@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("catrgoryService")
+@Service("blockService")
 public class BlockServiceImpl implements BlockService {
     @Autowired
     private BlockDao blockDao;
@@ -32,7 +32,7 @@ public class BlockServiceImpl implements BlockService {
      * 根据bid查询block
      */
     @Override
-    public Block findByBid(int bid){
+    public Block findByBid(int bid) {
         return blockDao.findByBid(bid);
     }
 
@@ -40,7 +40,7 @@ public class BlockServiceImpl implements BlockService {
      * 根据name查询block
      */
     @Override
-    public Block findByName(String name){
+    public Block findByName(String name) {
         return blockDao.findByName(name);
     }
 
