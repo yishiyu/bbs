@@ -1,4 +1,4 @@
-package com.yishiyu.dao;
+package com.jiading.dao;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

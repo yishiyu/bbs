@@ -1,10 +1,8 @@
-package com.yishiyu.dao;
+package com.jiading.dao;
 
-import com.jiading.dao.UserDao;
 import com.jiading.domain.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import sun.font.TrueTypeFont;
 
 /**
  * @program: bbs
@@ -64,8 +62,9 @@ public class UserTest extends BaseTest {
         user.setUsername("yishiyu");
         user.setUid(6);
         user.setPassword("123456");
-        user.setHead_portrait("http");
-        user.setAdmin_admin(true);
+        user.setHead_portrait("1");
+        user.setAdmin_permission(true);
+        user.setEmail("1004005214@qq.com");
         userDao.saveUser(user);
         user = userDao.findByUserId(6);
         System.out.println(user);
@@ -88,6 +87,7 @@ public class UserTest extends BaseTest {
         User user = userDao.findByUserId(6);
         user.setUsername("http");
         user.setCode("123456");
+        //System.out.println(user);
         userDao.updateUser(user);
     }
 
@@ -115,18 +115,6 @@ public class UserTest extends BaseTest {
      * @Author: Yishiyu
      * @Date: 2020/7/20
      */
-    @Test
-    public void testUpdateStatus(){
-        User user = userDao.findByUserId(4);
-        System.out.println("初始信息："+user);
-        user.setStatus("N");
-        userDao.updateUser(user);
-        User userModified = userDao.findByUserId(4);
-        System.out.println("修改后：\n"+userModified);
-        userDao.updateStatus(userModified);
-        User userFinal = userDao.findByUserId(4);
-        System.out.println("再次修改后：\n"+userFinal);
-    }
 
     /**
      * @Description: 测试findByUsernameAndPassword
