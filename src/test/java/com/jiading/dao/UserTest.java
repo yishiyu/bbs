@@ -1,10 +1,8 @@
-package com.yishiyu.dao;
+package com.jiading.dao;
 
-import com.jiading.dao.UserDao;
 import com.jiading.domain.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import sun.font.TrueTypeFont;
 
 /**
  * @program: bbs
