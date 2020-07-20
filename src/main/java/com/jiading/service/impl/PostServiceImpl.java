@@ -55,23 +55,23 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Reply> allCommentsInThisPost(String pid) {
+    public List<Reply> allCommentsInThisPost(int pid) {
         return postDao.allCommentsInThisPost(pid);
     }
 
     @Override
     public void viewAddOne(String pid) {
-        postDao.viewAddOne(pid);
+        postDao.viewAddOne(Integer.valueOf(pid));
     }
 
     @Override
     public void likedSubOne(String pid) {
-        postDao.likedSubOne(pid);
+        postDao.likedSubOne(Integer.valueOf(pid));
     }
 
     @Override
     public void likedAddOne(String pid) {
-        postDao.likedAddOne(pid);
+        postDao.likedAddOne(Integer.valueOf(pid));
     }
 
     @Override
