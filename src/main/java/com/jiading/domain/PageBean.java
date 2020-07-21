@@ -8,7 +8,9 @@ import java.util.List;
 public class PageBean<T> {
     private int totalCount;
     private int totalPage;
-
+    private int currentPage;
+    private int pageSize;
+    private List<T> list;
     public int getTotalCount() {
         return totalCount;
     }
@@ -49,7 +51,5 @@ public class PageBean<T> {
         this.list = list;
     }
 
-    private int currentPage;
-    private int pageSize;
-    private List<T> list;
+    
 }
