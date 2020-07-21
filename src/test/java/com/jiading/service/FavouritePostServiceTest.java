@@ -79,12 +79,7 @@ public class FavouritePostServiceTest extends BaseTest {
                 "uid:" + uid + " pid:" + pid + " " + fPService.isFavouritePost(pidString,uid)
         );
     }
-<<<<<<< HEAD
-@Test
-=======
-
     @Test
->>>>>>> origin/Laojieduo
     public void testAllLinkedPosts(){
         User user = new User();
         user.setUid(2);
