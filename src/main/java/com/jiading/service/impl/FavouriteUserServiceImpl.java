@@ -2,7 +2,7 @@ package com.jiading.service.impl;
 
 
 import com.jiading.dao.FavouriteUserDao;
-import com.jiading.domain.User;
+import com.jiading.model.User;
 import com.jiading.service.FavouriteUserService;
 import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +17,22 @@ public class FavouriteUserServiceImpl implements FavouriteUserService {
 
 
     @Override
-    public boolean isFavouriteUser(int linkedUid, int uid) {
-        return favouriteUserDao.findByUid(uid).contains(linkedUid);
+    public boolean isFavouriteUser(int likedUid, int uid) {
+        return favouriteUserDao.findByUid(uid).contains(likedUid);
     }
 
     @Override
-    public void add(int linkedUid, int uid) {
-        favouriteUserDao.add(uid, DateUtil.getStringTimeNow(), linkedUid);
+    public void add(int likedUid, int uid) {
+        favouriteUserDao.add(uid, DateUtil.getStringTimeNow(), likedUid);
     }
 
     @Override
-    public void delete(int linkedUid, int uid) {
-        favouriteUserDao.delete(uid,linkedUid);
+    public void delete(int likedUid, int uid) {
+        favouriteUserDao.delete(uid,likedUid);
     }
 
     @Override
-    public List<User> allLinkedPeople(User user) {
+    public List<User> allLikedPeople(User user) {
         return favouriteUserDao.findByUid(user.getUid());
     }
 }

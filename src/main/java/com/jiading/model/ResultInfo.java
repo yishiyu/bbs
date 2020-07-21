@@ -1,4 +1,4 @@
-package com.jiading.domain;
+package com.jiading.model;
 
 import java.io.Serializable;
 
@@ -9,6 +9,12 @@ public class ResultInfo implements Serializable {
     private boolean flag;//后端返回结果正常为true，发生异常返回false
     private Object data;//后端返回结果数据对象
     private String errorMsg;//发生异常的错误消息
+    private static ResultInfo trueInfo=new ResultInfo();
+    private static ResultInfo falseInfo=new ResultInfo();
+    static {
+        trueInfo.setFlag(true);
+        falseInfo.setFlag(false);
+    }
 
     //无参构造方法
     public ResultInfo() {
@@ -65,5 +71,18 @@ public class ResultInfo implements Serializable {
 
     public void setErrorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
+    }
+    /**
+    * @Description: 返回一个flag设置为true的resultInfo,其他内容均不加
+    * @Param: []
+    * @return: com.jiading.domain.ResultInfo
+    * @Author: JiaDing
+    * @Date: 2020/7/20
+    */
+    public static ResultInfo getTrueResultInfo(){
+        return trueInfo;
+    }
+    public static ResultInfo getFalseResultInfo(){
+        return falseInfo;
     }
 }

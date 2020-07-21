@@ -1,6 +1,7 @@
 package com.jiading.dao;
 
-import com.jiading.domain.Post;
+
+import com.jiading.model.Post;
 import com.jiading.util.DateUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,6 @@
 package com.jiading.controller;
 
-import com.jiading.domain.PageBean;
-import com.jiading.domain.Post;
-import com.jiading.domain.Reply;
-import com.jiading.domain.User;
+import com.jiading.model.*;
 import com.jiading.service.FavouritePostService;
 import com.jiading.service.PostService;
 import com.jiading.service.UserService;
@@ -17,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-
+/*
+所有没有返回对象的方法均返回一个resultInfo，用其中的flag字段表示操作是否完成
+ */
 /**
  * @program: bbs
  * @description: 与帖子相关的servlet
@@ -171,12 +170,13 @@ public class PostServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping("/cancelFavourite")
-    public void cancelFavourite(HttpServletRequest req, HttpServletResponse resp) {
+    public void cancelFavourite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pid = req.getParameter("pid");
         User user = (User) req.getSession().getAttribute("user");
         favouritePostService.cancelLike(Integer.valueOf(pid), user.getUid());
         postService.likedSubOne(pid);
         userService.likedPostSubOneToUserBean(pid);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
     /**
@@ -187,12 +187,13 @@ public class PostServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping("/addFavourite")
-    public void addFavourite(HttpServletRequest req, HttpServletResponse resp) {
+    public void addFavourite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pid = req.getParameter("pid");
         User user = (User) req.getSession().getAttribute("user");
         favouritePostService.add(Integer.parseInt(pid), user.getUid());
         postService.likedAddOne(pid);
         userService.likedPostAddOneToUserBean(pid);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
     /**
     * @Description: 输入n，返回n个收藏最多的帖子
@@ -279,7 +280,7 @@ public class PostServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping("/writePost")
-    public void writePost(HttpServletRequest req, HttpServletResponse resp) {
+    public void writePost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
         String title = req.getParameter("title");
@@ -287,6 +288,7 @@ public class PostServlet extends BaseServlet {
         String content = req.getParameter("content");
         String bid = req.getParameter("bid");
         postService.writePost(user, title, summary, content, bid);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
     /**
@@ -300,12 +302,13 @@ public class PostServlet extends BaseServlet {
      * @Date: 2020/7/19
      */
     @RequestMapping("/submitComment")
-    public void submitComment(HttpServletRequest req, HttpServletResponse resp) {
+    public void submitComment(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
         int pid = Integer.parseInt(req.getParameter("pid"));
         String text = req.getParameter("text");
         postService.writeComment(user.getUid(), pid, text);
+        writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
     /**

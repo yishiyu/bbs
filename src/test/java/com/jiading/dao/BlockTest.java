@@ -1,6 +1,7 @@
 package com.jiading.dao;
 
-import com.jiading.domain.Block;
+
+import com.jiading.model.Block;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
