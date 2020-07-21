@@ -287,7 +287,7 @@ public class PostServlet extends BaseServlet {
         String summary = req.getParameter("summary");
         String content = req.getParameter("content");
         String bid = req.getParameter("bid");
-        postService.writePost(user, title, summary, content, bid);
+        postService.writePost(user,title, summary, content, bid);
         writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
 
