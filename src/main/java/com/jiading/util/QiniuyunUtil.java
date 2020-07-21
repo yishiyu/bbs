@@ -96,7 +96,7 @@ public class QiniuyunUtil {
         if (putRet == null) {
             return "";
         }
-        return putRet.key;
+        return SERVER_DOMAIN + putRet.key;
     }
 
 }
