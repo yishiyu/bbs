@@ -20,21 +20,14 @@ public interface FavouriteUserDao {
     @Select("select count(*) from FAVORITE_UID where uid=#{uid}")
     public int findCount(@Param("uid") Integer uid);
 
-    @Update("insert into FAVORITE_UID('UID','LIKEDUID','TIME') values(#{uid},#{likedUid},#{date})")
+    @Update("insert into FAVORITE_UID(`UID`,`LIKEDUID`,`TIME`) values(#{uid},#{likedUid},#{date})")
     void add(@Param("uid") Integer uid, @Param("date") String date, @Param("likedUid") Integer likedUid);
 
-<<<<<<< HEAD
-    @Delete("delete * from favourite_uid where uid=#{uid} and linkeduid=#{linkedUid}")
-    void delete(@Param("uid") Integer uid , @Param("linkedUid") Integer linkedUid);
+
+    @Delete("delete  from FAVORITE_UID where uid=#{uid} and likeduid=#{likedUid}")
+    void delete(@Param("uid") Integer uid , @Param("likedUid") Integer linkedUid);
 
 //    @Select("select * from FAVORITE_UID where uid=#{uid} and linkeduid=#{linkedUid}")
 //    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
-=======
-    @Delete("delete * from favourite_uid where uid=#{uid} and likeduid=#{likedUid}")
-    void delete(@Param("uid") Integer uid , @Param("likedUid") Integer likedUid);
 
-    @Select("select * from FAVORITE_UID where uid=#{uid} and likeduid=#{likedUid}")
-    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("likedUid") int likedUid);
-
->>>>>>> origin/Laojieduo
 }

@@ -27,7 +27,7 @@ public interface FavouritePostDao {
      * @Author: JiaDing
      * @Date: 2020/7/18
      */
-    @Insert("insert into FAVORITE_PID('UID','PID','TIME') values (#{uid},#{pid},#{date})")
+    @Insert("insert into FAVORITE_PID(`UID`,`PID`,`TIME`) values (#{uid},#{pid},#{date})")
     void add(@Param("uid") Integer uid, @Param("pid") Integer pid, @Param("date") String date);
 
     @Select("select * from FAVORITE_PID where uid=#{uid} and pid=#{pid}")
