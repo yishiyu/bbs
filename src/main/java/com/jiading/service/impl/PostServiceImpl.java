@@ -60,6 +60,17 @@ public class PostServiceImpl implements PostService {
         return postDao.allCommentsInThisPost(Integer.valueOf(pid));
     }
 
+
+    @Override
+    public Post findOne(String pid) {
+        Integer pidInt = Integer.parseInt(pid);
+        Post post = new Post();
+        post.setPid(pidInt);
+        Post one = postDao.findOne(post);
+        return one;
+    }
+
+
     @Override
     public void viewAddOne(String pid) {
         postDao.viewAddOne(Integer.valueOf(pid));
@@ -100,20 +111,6 @@ public class PostServiceImpl implements PostService {
         int totalPage = totalCount % pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
         pb.setTotalPage(totalPage);
         return pb;
-    }
-
-    @Override
-    public Post findOne(String pid) {
-        Integer pidInt = Integer.parseInt(pid);
-        Post post = new Post();
-        post.setPid(pidInt);
-        Post one = postDao.findOne(post);
-        return one;
-    }
-
-    @Override
-    public List<Post> findAllByUid(String uid) {
-        return postDao.findAllByUid(uid);
     }
 
     @Override
