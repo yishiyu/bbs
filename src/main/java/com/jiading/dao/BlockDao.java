@@ -1,7 +1,7 @@
 package com.jiading.dao;
 
 
-import com.jiading.domain.Block;
+import com.jiading.model.Block;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ public interface BlockDao {
     public List<Block> findAll();
 
     @Select("select * from blocks where bid=#{bid}")
-    public Block findByBid(@Param("int") int bid);
+    public Block findByBid(@Param("bid") int bid);
 
     @Select("select * from blocks where blockname=#{name}")
     public Block findByName(@Param("name") String name);

@@ -1,8 +1,7 @@
 package com.jiading.service;
 
 
-import com.jiading.domain.User;
-import org.springframework.stereotype.Service;
+import com.jiading.model.User;
 
 
 public interface UserService {

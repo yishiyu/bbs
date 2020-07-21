@@ -1,10 +1,10 @@
 package com.jiading.service.impl;
 
 import com.jiading.dao.PostDao;
-import com.jiading.domain.PageBean;
-import com.jiading.domain.Post;
-import com.jiading.domain.Reply;
-import com.jiading.domain.User;
+import com.jiading.model.PageBean;
+import com.jiading.model.Post;
+import com.jiading.model.Reply;
+import com.jiading.model.User;
 import com.jiading.service.PostService;
 import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +60,17 @@ public class PostServiceImpl implements PostService {
         return postDao.allCommentsInThisPost(Integer.valueOf(pid));
     }
 
+
+    @Override
+    public Post findOne(String pid) {
+        Integer pidInt = Integer.parseInt(pid);
+        Post post = new Post();
+        post.setPid(pidInt);
+        Post one = postDao.findOne(post);
+        return one;
+    }
+
+
     @Override
     public void viewAddOne(String pid) {
         postDao.viewAddOne(Integer.valueOf(pid));
@@ -88,32 +99,18 @@ public class PostServiceImpl implements PostService {
         pb.setPageSize(pageSize);
         Post post = new Post();
         post.setBid(bid);
-        post.setTitle(postNameKeyWord);
+        post.setTitle("%"+postNameKeyWord+"%");
         //设置总记录数
         int totalCount = postDao.findTotalCountByTitleKeyWordAndBlock(post);
         pb.setTotalCount(totalCount);
         //设置当前页显示的数据集合
         int start = (currentPage - 1) * pageSize;
-        List<Post> list = postDao.findByPageInSearch(post, start, pageSize);
+        List<Post> list = postDao.findByPageInSearch(post.getBid(),post.getTitle(), start, pageSize);
         pb.setList(list);
         //设置总页数
         int totalPage = totalCount % pageSize == 0 ? totalCount / pageSize : totalCount / pageSize + 1;
         pb.setTotalPage(totalPage);
         return pb;
-    }
-
-    @Override
-    public Post findOne(String pid) {
-        Integer pidInt = Integer.parseInt(pid);
-        Post post = new Post();
-        post.setPid(pidInt);
-        Post one = postDao.findOne(post);
-        return one;
-    }
-
-    @Override
-    public List<Post> findAllByUid(String uid) {
-        return postDao.findAllByUid(uid);
     }
 
     @Override

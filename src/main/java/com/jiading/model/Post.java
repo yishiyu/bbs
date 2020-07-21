@@ -1,4 +1,4 @@
-package com.jiading.domain;
+package com.jiading.model;
 
 import java.io.Serializable;
 
@@ -116,5 +116,18 @@ public class Post implements Serializable {
 
     public void setView(int view) {
         this.view = view;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "pid=" + pid +
+                ", uid=" + uid +
+                ", bid=" + bid +
+                ", title='" + title + '\'' +
+                ", isCanShow=" + isCanShow +
+                ", view=" + view +
+                ", liked=" + liked +
+                '}';
     }
 }

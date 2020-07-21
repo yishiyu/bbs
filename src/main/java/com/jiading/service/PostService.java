@@ -1,10 +1,9 @@
 package com.jiading.service;
 
-import com.jiading.domain.PageBean;
-import com.jiading.domain.Post;
-import com.jiading.domain.Reply;
-import com.jiading.domain.User;
-import org.springframework.stereotype.Service;
+import com.jiading.model.PageBean;
+import com.jiading.model.Post;
+import com.jiading.model.Reply;
+import com.jiading.model.User;
 
 import java.util.List;
 
@@ -13,8 +12,6 @@ public interface PostService {
     public PageBean<Post> pageQueryForSearch(int bid, int currentPage, int pageSize, String postName);
 
     Post findOne(String pid);
-
-    List<Post> findAllByUid(String uid);
 
     List<Post> findAllByUid(int uid);
 
