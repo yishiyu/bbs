@@ -4,6 +4,7 @@ import com.jiading.model.Post;
 import com.jiading.model.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.TestExecutionListeners;
 
 import java.util.List;
 
@@ -79,6 +80,7 @@ public class FavouritePostServiceTest extends BaseTest {
         );
     }
 
+    @Test
     public void testAllLinkedPosts(){
         User user = new User();
         user.setUid(2);
