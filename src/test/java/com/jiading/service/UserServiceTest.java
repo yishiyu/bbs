@@ -158,7 +158,7 @@ public class UserServiceTest extends BaseTest {
         System.out.println(userService.findByUserId(1));
 
         userService.likedPostSubOneToUserBean(pidTest);
-        System.outu.println(userService.findByUserId(1));
+        System.out.println(userService.findByUserId(1));
     }
 
     @Test

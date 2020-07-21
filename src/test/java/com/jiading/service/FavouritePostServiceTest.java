@@ -79,13 +79,12 @@ public class FavouritePostServiceTest extends BaseTest {
                 "uid:" + uid + " pid:" + pid + " " + fPService.isFavouritePost(pidString,uid)
         );
     }
-
     @Test
     public void testAllLinkedPosts(){
         User user = new User();
         user.setUid(2);
         List<Post> posts = fPService.allLinkedPosts(
-                0,
+                1,
                 5,
                 user
         ).getList();

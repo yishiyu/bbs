@@ -26,7 +26,7 @@
         <property name="jdbcUrl"
                   value="jdbc:mysql://localhost:3306/gittub?useTimezone=true&amp;serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="user" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="60018977Aa"/>
     </bean>
 
     <!--配置SqlSessionFactory工厂

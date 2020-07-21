@@ -1,5 +1,7 @@
 package com.jiading.service;
 
+
+import com.jiading.model.Post;
 import com.jiading.model.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
