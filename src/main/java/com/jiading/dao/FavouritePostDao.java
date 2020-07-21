@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface FavouritePostDao {
 
-    // TODO: 2020/7/20 limit的问题，检查curretpage是否返回正确的起始端
+
 
     @Select("select * from posts where pid in (select pid from FAVORITE_PID where uid=#{uid}) limit #{currentPage},#{pageSize}")
     public List<Post> findByUidInPages(@Param("uid") Integer uid, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);

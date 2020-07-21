@@ -24,7 +24,7 @@ public class PostServiceTest extends BaseTest {
         int bid = 1;
         List<Post> posts = postService.pageQueryForViewByBlock(
                 bid,
-                0,
+                2,
                 10
         ).getList();
         for (Post p : posts) {
@@ -174,7 +174,7 @@ public class PostServiceTest extends BaseTest {
     public void testPageQueryForSearch(){
         List<Post> posts = postService.pageQueryForSearch(
                 1,
-                0,
+                1,
                 3,
                 "学校"
         ).getList();
@@ -201,7 +201,7 @@ public class PostServiceTest extends BaseTest {
 
         List<Post> posts = postService.findAllByUidInPages(
                 uidInt,
-                0,
+                1,
                 3
         ).getList();
 

@@ -39,8 +39,8 @@ public interface PostDao {
     int findTotalCountByBlock(@Param("bid") int bid);
 
 
-    @Insert("insert into posts(`UID`, `PID`, `TITLE`, `ABSTRACT`, `CONTENT`, `TIME`,  `VIEW`, `LIKED`)values(#{uid},#{pid},#{title},#{abstract},#{content},#{time},0,0)")
-    void writePost(@Param("uid") int uid, @Param("pid") Integer bid, @Param("title") String title, @Param("abstract") String summary, @Param("content") String content, @Param("time") String TimeNow);
+    @Insert("insert into posts(`UID`,`BID`, `TITLE`, `ABSTRACT`, `CONTENT`, `TIME`,  `VIEW`, `LIKED`)values(#{uid},#{bid},#{title},#{abstract},#{content},#{time},0,0)")
+    void writePost(@Param("uid") int uid, @Param("bid")Integer bid, @Param("title") String title, @Param("abstract") String summary, @Param("content") String content, @Param("time") String TimeNow);
 
     @Insert("insert into reply(`UID`, `PID`,`CONTENT`, `TIME`) values(#{uid},#{pid},#{text},#{time})")
     void writeComment(@Param("uid") int uid, @Param("pid") int pid, @Param("text") String text, @Param("time") String time);
