@@ -32,7 +32,7 @@ public class FavouriteUserServiceImpl implements FavouriteUserService {
     }
 
     @Override
-    public List<User> allLinkedPeople(User user) {
+    public List<User> allLikedPeople(User user) {
         return favouriteUserDao.findByUid(user.getUid());
     }
 }
