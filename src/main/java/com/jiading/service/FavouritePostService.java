@@ -1,11 +1,8 @@
 package com.jiading.service;
 
-import com.jiading.domain.PageBean;
-import com.jiading.domain.Post;
-import com.jiading.domain.User;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.jiading.model.PageBean;
+import com.jiading.model.Post;
+import com.jiading.model.User;
 
 
 public interface FavouritePostService {

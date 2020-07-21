@@ -1,11 +1,10 @@
 package com.jiading.controller;
 
-import com.jiading.domain.ResultInfo;
-import com.jiading.domain.User;
+import com.jiading.model.ResultInfo;
+import com.jiading.model.User;
 import com.jiading.service.FavouriteUserService;
 import com.jiading.service.UserService;
 import com.jiading.util.QiniuyunUtil;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -154,7 +153,7 @@ public class UserServlet extends BaseServlet {
     public void allLikedPeople(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
-        List<User> list = favouriteUserService.allLinkedPeople(user);
+        List<User> list = favouriteUserService.allLikedPeople(user);
         writeValue(list, resp);
     }
 

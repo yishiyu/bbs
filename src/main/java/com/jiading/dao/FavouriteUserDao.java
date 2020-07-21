@@ -1,7 +1,7 @@
 package com.jiading.dao;
 
 
-import com.jiading.domain.User;
+import com.jiading.model.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,13 +20,14 @@ public interface FavouriteUserDao {
     @Select("select count(*) from FAVORITE_UID where uid=#{uid}")
     public int findCount(@Param("uid") Integer uid);
 
-    @Update("insert into FAVORITE_UID('UID','LIKEDUID','TIME') values(#{uid},#{likedUid},#{date})")
+    @Update("insert into FAVORITE_UID(`UID`,`LIKEDUID`,`TIME`) values(#{uid},#{likedUid},#{date})")
     void add(@Param("uid") Integer uid, @Param("date") String date, @Param("likedUid") Integer likedUid);
 
-    @Delete("delete * from favourite_uid where uid=#{uid} and likeduid=#{likedUid}")
+
+    @Delete("delete  from FAVORITE_UID where uid=#{uid} and likeduid=#{likedUid}")
     void delete(@Param("uid") Integer uid , @Param("likedUid") Integer likedUid);
 
-    @Select("select * from FAVORITE_UID where uid=#{uid} and likeduid=#{likedUid}")
-    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("likedUid") int likedUid);
+//    @Select("select * from FAVORITE_UID where uid=#{uid} and linkeduid=#{linkedUid}")
+//    public User findByLinkedUidAndUid(@Param("uid") int uid, @Param("linkedUid") int likedUid);
 
 }

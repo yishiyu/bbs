@@ -2,9 +2,9 @@ package com.jiading.service.impl;
 
 
 import com.jiading.dao.FavouritePostDao;
-import com.jiading.domain.PageBean;
-import com.jiading.domain.Post;
-import com.jiading.domain.User;
+import com.jiading.model.PageBean;
+import com.jiading.model.Post;
+import com.jiading.model.User;
 import com.jiading.service.FavouritePostService;
 import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
