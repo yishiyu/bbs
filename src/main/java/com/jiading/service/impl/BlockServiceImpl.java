@@ -3,7 +3,7 @@ package com.jiading.service.impl;
 
 import com.jiading.dao.BlockDao;
 
-import com.jiading.domain.Block;
+import com.jiading.model.Block;
 
 import com.jiading.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;

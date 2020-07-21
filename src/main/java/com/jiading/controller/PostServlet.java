@@ -1,6 +1,6 @@
 package com.jiading.controller;
 
-import com.jiading.domain.*;
+import com.jiading.model.*;
 import com.jiading.service.FavouritePostService;
 import com.jiading.service.PostService;
 import com.jiading.service.UserService;

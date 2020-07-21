@@ -1,10 +1,10 @@
 package com.jiading.service.impl;
 
 import com.jiading.dao.PostDao;
-import com.jiading.domain.PageBean;
-import com.jiading.domain.Post;
-import com.jiading.domain.Reply;
-import com.jiading.domain.User;
+import com.jiading.model.PageBean;
+import com.jiading.model.Post;
+import com.jiading.model.Reply;
+import com.jiading.model.User;
 import com.jiading.service.PostService;
 import com.jiading.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;

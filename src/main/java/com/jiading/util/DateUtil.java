@@ -20,4 +20,5 @@ public class DateUtil {
     public static String getStringTime(Date date) {
         return df.format(date);
     }
+
 }

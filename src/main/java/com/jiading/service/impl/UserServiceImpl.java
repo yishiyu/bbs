@@ -2,7 +2,7 @@ package com.jiading.service.impl;
 
 
 import com.jiading.dao.UserDao;
-import com.jiading.domain.User;
+import com.jiading.model.User;
 import com.jiading.service.UserService;
 import com.jiading.util.MailUtils;
 import com.jiading.util.UuidUtil;
