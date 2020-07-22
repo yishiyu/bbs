@@ -18,7 +18,10 @@ public class FavouriteUserServiceImpl implements FavouriteUserService {
 
     @Override
     public boolean isFavouriteUser(int likedUid, int uid) {
-        return favouriteUserDao.findByUid(uid).contains(likedUid);
+        for (User user : favouriteUserDao.findByUid(uid)) {
+            if(user.getUid()==uid) return true;
+        }
+        return false;
     }
 
     @Override
