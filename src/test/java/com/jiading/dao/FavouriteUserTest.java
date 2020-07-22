@@ -2,7 +2,7 @@ package com.jiading.dao;
 
 
 import com.jiading.model.User;
-import com.jiading.util.DateUtil;
+import com.jiading.util.TimeUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,7 +38,7 @@ public class FavouriteUserTest extends BaseTest {
     public void testModify(){
         int uid = 1;
         int likedUid = 5;
-        String time = DateUtil.getStringTimeNow();
+        String time = TimeUtil.getStringTimeNow();
 
         // 正常修改
         System.out.println("修改前用户的关注列表:");

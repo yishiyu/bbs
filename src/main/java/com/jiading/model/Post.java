@@ -16,7 +16,7 @@ public class Post implements Serializable {
     private String summary;//摘要
     private String content;//文章
     private String title;//标题
-    private String date;//文章发布时间
+    private String time;//文章发布时间
     private boolean isCanShow;//是否显示
     private int view;//浏览量
     private int liked;//收藏量
@@ -24,14 +24,14 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(int pid, int uid, int bid, String summary, String content, String title, String date, boolean isCanShow, int view, int liked) {
+    public Post(int pid, int uid, int bid, String summary, String content, String title, String time, boolean isCanShow, int view, int liked) {
         this.pid = pid;
         this.uid = uid;
         this.bid = bid;
         this.summary = summary;
         this.content = content;
         this.title = title;
-        this.date = date;
+        this.time = time;
         this.isCanShow = isCanShow;
         this.view = view;
         this.liked = liked;
@@ -93,14 +93,13 @@ public class Post implements Serializable {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTime(String time) {
+        this.time = time;
     }
-
 
     public boolean isCanShow() {
         return isCanShow;
@@ -124,7 +123,10 @@ public class Post implements Serializable {
                 "pid=" + pid +
                 ", uid=" + uid +
                 ", bid=" + bid +
+                ", summary='" + summary + '\'' +
+                ", content='" + content + '\'' +
                 ", title='" + title + '\'' +
+                ", time='" + time + '\'' +
                 ", isCanShow=" + isCanShow +
                 ", view=" + view +
                 ", liked=" + liked +

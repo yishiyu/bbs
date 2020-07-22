@@ -8,9 +8,9 @@ import org.junit.Test;
  * @author: JiaDing
  * @create: 2020-07-20 16:58
  **/
-public class DateUtilTest {
+public class TimeUtilTest {
     @Test
     public void timeTest(){
-        System.out.println(DateUtil.getStringTimeNow());
+        System.out.println(TimeUtil.getStringTimeNow());
     }
 }

@@ -10,7 +10,7 @@ import java.util.Date;
  * @author: JiaDing
  * @create: 2020-07-18 16:24
  **/
-public class DateUtil {
+public class TimeUtil {
     static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static String getStringTimeNow() {

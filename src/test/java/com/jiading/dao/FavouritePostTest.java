@@ -2,7 +2,7 @@ package com.jiading.dao;
 
 
 import com.jiading.model.Post;
-import com.jiading.util.DateUtil;
+import com.jiading.util.TimeUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,7 +49,7 @@ public class FavouritePostTest extends BaseTest {
         fPDao.add(
                 uid,
                 pid,
-                DateUtil.getStringTimeNow()
+                TimeUtil.getStringTimeNow()
         );
         System.out.println("插入后用户"+uid+"的收藏列表:");
         for (Post post : fPDao.findByUidInPages(uid, 0, 20)) {
@@ -59,7 +59,7 @@ public class FavouritePostTest extends BaseTest {
         fPDao.add(
                 uid,
                 pid,
-                DateUtil.getStringTimeNow()
+                TimeUtil.getStringTimeNow()
         );
         System.out.println("插入后用户"+uid+"的收藏列表:");
         for (Post post : fPDao.findByUidInPages(uid, 0, 20)) {
@@ -70,7 +70,7 @@ public class FavouritePostTest extends BaseTest {
         fPDao.add(
                 uid,
                 9999,
-                DateUtil.getStringTimeNow()
+                TimeUtil.getStringTimeNow()
         );
         System.out.println("插入后用户"+uid+"的收藏列表:");
         for (Post post : fPDao.findByUidInPages(uid, 0, 20)) {
@@ -82,7 +82,7 @@ public class FavouritePostTest extends BaseTest {
         fPDao.add(
                 uid,
                 pid,
-                DateUtil.getStringTimeNow()
+                TimeUtil.getStringTimeNow()
         );
         System.out.println("插入后用户"+uid+"的收藏列表:");
         for (Post post : fPDao.findByUidInPages(uid, 0, 20)) {

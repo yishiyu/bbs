@@ -2,7 +2,7 @@ package com.jiading.dao;
 
 import com.jiading.model.Post;
 import com.jiading.model.Reply;
-import com.jiading.util.DateUtil;
+import com.jiading.util.TimeUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -117,7 +117,7 @@ public class PostTest extends BaseTest {
     @Test
     public void testWritePostChinese() {
 
-        String time = DateUtil.getStringTimeNow();
+        String time = TimeUtil.getStringTimeNow();
         // 没有返回pid,没办法查看是否插入成功,需要手动到数据库查看...
         // 正常插入
         postDao.writePost(
@@ -142,7 +142,7 @@ public class PostTest extends BaseTest {
     }
     @Test
     public void testWritePostEnglish() {
-        String time = DateUtil.getStringTimeNow();
+        String time = TimeUtil.getStringTimeNow();
         // 没有返回pid,没办法查看是否插入成功,需要手动到数据库查看...
         // 正常插入
         postDao.writePost(

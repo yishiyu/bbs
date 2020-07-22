@@ -2,16 +2,9 @@ package com.jiading.service;
 
 
 import com.jiading.dao.UserDao;
-import com.jiading.model.Post;
 import com.jiading.model.User;
-import com.jiading.model.Reply;
-import com.jiading.util.DateUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @program: bbs

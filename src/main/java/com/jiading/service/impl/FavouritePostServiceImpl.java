@@ -6,7 +6,7 @@ import com.jiading.model.PageBean;
 import com.jiading.model.Post;
 import com.jiading.model.User;
 import com.jiading.service.FavouritePostService;
-import com.jiading.util.DateUtil;
+import com.jiading.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class FavouritePostServiceImpl implements FavouritePostService {
 
     @Override
     public void add(int pid, int uid) {
-        favouritePostDao.add(uid, pid, DateUtil.getStringTimeNow());
+        favouritePostDao.add(uid, pid, TimeUtil.getStringTimeNow());
     }
 
     @Override

@@ -1,15 +1,17 @@
 package com.jiading.service.impl;
 
 import com.jiading.dao.PostDao;
+import com.jiading.dao.UserDao;
 import com.jiading.model.PageBean;
 import com.jiading.model.Post;
 import com.jiading.model.Reply;
 import com.jiading.model.User;
 import com.jiading.service.PostService;
-import com.jiading.util.DateUtil;
+import com.jiading.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     @Autowired
     PostDao postDao;
+    @Autowired
+    UserDao userDao;
 
     @Override
     public PageBean<Post> pageQueryForViewByBlock(int bid, int currentPage, int pageSize) {
@@ -51,13 +55,19 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     public void writeComment(int uid, int pid, String text) {
-        postDao.writeComment(uid, pid, text, DateUtil.getStringTimeNow());
+        postDao.writeComment(uid, pid, text, TimeUtil.getStringTimeNow());
     }
 
 
     @Override
     public List<Reply> allCommentsInThisPost(String pid) {
-        return postDao.allCommentsInThisPost(Integer.valueOf(pid));
+        List<Reply> replies = postDao.allCommentsInThisPost(Integer.valueOf(pid));
+        Iterator<Reply>iterator=replies.iterator();
+        while(iterator.hasNext()){
+            Reply reply=iterator.next();
+            reply.setUser(userDao.findByUserId(reply.getUid()));
+        }
+        return replies;
     }
 
 
@@ -140,7 +150,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void writePost(User user, String title, String summary, String content, String bid) {
-        postDao.writePost(user.getUid(), Integer.valueOf(bid), title, summary, content, DateUtil.getStringTimeNow());
+        postDao.writePost(user.getUid(), Integer.valueOf(bid), title, summary, content, TimeUtil.getStringTimeNow());
     }
 
 }
