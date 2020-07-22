@@ -1,5 +1,6 @@
 package com.jiading.controller;
 
+import com.jiading.dao.BlockDao;
 import com.jiading.model.*;
 import com.jiading.service.FavouritePostService;
 import com.jiading.service.PostService;
@@ -30,6 +31,8 @@ public class PostServlet extends BaseServlet {
     private PostService postService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private BlockDao blockDao;
     @Autowired
     private FavouritePostService favouritePostService;
     public static int NOLOGIN = -1;
@@ -76,7 +79,7 @@ public class PostServlet extends BaseServlet {
      * 前端需要传入的参数有四个
      * currentPage:现在到第几页了
      * pageSize:一页显示多少个结果
-     * bid:属于哪个分类
+     * blockName:分类的名称
      * postName:搜索的关键字
      * @Param: [req, resp]
      * @return: void
@@ -88,7 +91,9 @@ public class PostServlet extends BaseServlet {
         //1. 接受参数
         String currentPage = req.getParameter("currentPage");
         String pageSize = req.getParameter("pageSize");
-        String bid = req.getParameter("bid");
+        String blockName = req.getParameter("blockName");
+        Block block = blockDao.findByName(blockName);
+        String bid=String.valueOf(block.getBid());
         //这里postname输入中文会产生乱码，需要处理乱码问题
         String postName = req.getParameter("postName");
         if (postName != null)
@@ -163,6 +168,7 @@ public class PostServlet extends BaseServlet {
         System.out.println("isFavourite__user:"+user.getUsername()+",pid:"+pid+",ans:"+ans);
         //
         writeValue(ans, resp);
+
     }
 
     /**
