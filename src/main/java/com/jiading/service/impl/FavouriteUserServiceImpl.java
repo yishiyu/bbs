@@ -4,7 +4,7 @@ package com.jiading.service.impl;
 import com.jiading.dao.FavouriteUserDao;
 import com.jiading.model.User;
 import com.jiading.service.FavouriteUserService;
-import com.jiading.util.DateUtil;
+import com.jiading.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class FavouriteUserServiceImpl implements FavouriteUserService {
 
     @Override
     public void add(int likedUid, int uid) {
-        favouriteUserDao.add(uid, DateUtil.getStringTimeNow(), likedUid);
+        favouriteUserDao.add(uid, TimeUtil.getStringTimeNow(), likedUid);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class FavouriteUserServiceImpl implements FavouriteUserService {
     }
 
     @Override
-    public List<User> allLinkedPeople(User user) {
+    public List<User> allLikedPeople(User user) {
         return favouriteUserDao.findByUid(user.getUid());
     }
 }

@@ -13,8 +13,6 @@ public interface PostService {
 
     Post findOne(String pid);
 
-    List<Post> findAllByUid(String uid);
-
     List<Post> findAllByUid(int uid);
 
     PageBean<Post> findAllByUidInPages(int uid, int currentPage, int pageSize);

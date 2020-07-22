@@ -153,7 +153,7 @@ public class UserServlet extends BaseServlet {
     public void allLikedPeople(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Object objectUser = req.getSession().getAttribute("user");
         User user = (User) objectUser;
-        List<User> list = favouriteUserService.allLinkedPeople(user);
+        List<User> list = favouriteUserService.allLikedPeople(user);
         writeValue(list, resp);
     }
 

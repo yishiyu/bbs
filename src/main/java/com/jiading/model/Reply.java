@@ -10,16 +10,25 @@ import java.io.Serializable;
  **/
 public class Reply implements Serializable {
     private User user;//评论的用户
+    private int uid;
     private int pid;//评论的文章的id
     private String content;
-    private String Date;
+    private String time;
     private boolean isCanShow;//是否显示
 
-    public Reply(User user, int pid, String content, String date, boolean isCanShow) {
-        this.user = user;
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public Reply(int uid, int pid, String content, String time, boolean isCanShow) {
+        this.uid = uid;
         this.pid = pid;
         this.content = content;
-        Date = date;
+        this.time =time;
         this.isCanShow = isCanShow;
     }
 
@@ -52,12 +61,12 @@ public class Reply implements Serializable {
         this.content = content;
     }
 
-    public String getDate() {
-        return Date;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public boolean isCanShow() {
@@ -66,5 +75,17 @@ public class Reply implements Serializable {
 
     public void setCanShow(boolean canShow) {
         isCanShow = canShow;
+    }
+
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "user=" + user +
+                ", uid=" + uid +
+                ", pid=" + pid +
+                ", content='" + content + '\'' +
+                ", time='" + time + '\'' +
+                ", isCanShow=" + isCanShow +
+                '}';
     }
 }

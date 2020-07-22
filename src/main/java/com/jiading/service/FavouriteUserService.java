@@ -19,5 +19,5 @@ public interface FavouriteUserService {
      * @Author: JiaDing
      * @Date: 2020/7/19
      */
-    List<User> allLinkedPeople(User user);
+    List<User> allLikedPeople(User user);
 }
