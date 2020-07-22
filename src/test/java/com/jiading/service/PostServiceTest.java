@@ -24,7 +24,7 @@ public class PostServiceTest extends BaseTest {
         int bid = 1;
         List<Post> posts = postService.pageQueryForViewByBlock(
                 bid,
-                2,
+                1,
                 10
         ).getList();
         for (Post p : posts) {

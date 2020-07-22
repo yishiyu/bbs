@@ -159,6 +159,9 @@ public class PostServlet extends BaseServlet {
         } else {
             ans = NOTFAVOURITED;
         }
+        //测试
+        System.out.println("isFavourite__user:"+user.getUsername()+",pid:"+pid+",ans:"+ans);
+        //
         writeValue(ans, resp);
     }
 
@@ -193,6 +196,9 @@ public class PostServlet extends BaseServlet {
         favouritePostService.add(Integer.parseInt(pid), user.getUid());
         postService.likedAddOne(pid);
         userService.likedPostAddOneToUserBean(pid);
+        //测试
+        System.out.println("user:"+user.getUsername()+",pid:"+pid);
+        //
         writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
     /**

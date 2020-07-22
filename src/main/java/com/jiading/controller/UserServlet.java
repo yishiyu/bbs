@@ -111,14 +111,7 @@ public class UserServlet extends BaseServlet {
             e.printStackTrace();
         }
         ResultInfo resultInfo = new ResultInfo();
-        String checkcode = (String) req.getSession().getAttribute("CHECKCODE_SERVER");
-        req.getSession().removeAttribute("CHECKCODE_SERVER");
-        if (!user.getCode().toUpperCase().equals(checkcode.toUpperCase())) {
-            resultInfo.setFlag(false);
-            resultInfo.setErrorMsg("验证码错误");
-            writeValue(resultInfo, resp);
-            return;
-        }
+
         User u = service.login(user);
 
         //4.判断用户名或密码是否正确
@@ -137,6 +130,7 @@ public class UserServlet extends BaseServlet {
         if (u != null && "Y".equals(u.getStatus())) {
             //登录成功
             resultInfo.setFlag(true);
+            resultInfo.setData(u.getUid());
             req.getSession().setAttribute("user", u);
         }
         writeValue(resultInfo, resp);

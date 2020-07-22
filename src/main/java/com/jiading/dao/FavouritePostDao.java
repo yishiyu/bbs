@@ -31,7 +31,7 @@ public interface FavouritePostDao {
     void add(@Param("uid") Integer uid, @Param("pid") Integer pid, @Param("date") String date);
 
     @Select("select * from FAVORITE_PID where uid=#{uid} and pid=#{pid}")
-    public Post findByPidAndUid(@Param("uid") int uid, @Param("pid") int pid);
+    Post findByPidAndUid(@Param("uid") int uid, @Param("pid") int pid);
 
     @Delete("delete from FAVORITE_PID where pid=#{pid} and uid=#{uid}")
     void cancelLike(@Param("pid") Integer pid, @Param("uid") int uid);
