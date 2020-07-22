@@ -4,17 +4,10 @@ USE gittub;
 
 SET @@global.auto_increment_increment = 1;
 
-CREATE TABLE IF NOT EXISTS IMAGES(
-`IID` INT NOT NULL AUTO_INCREMENT,
-`URL` VARCHAR(1000) DEFAULT NULL,
-PRIMARY KEY(`IID`)
-)ENGINE=INNODB DEFAULT CHARSET=UTF8;
-
 CREATE TABLE IF NOT EXISTS BLOCKS(
 `BID` INT NOT NULL AUTO_INCREMENT,
 `BLOCKNAME` VARCHAR(100) DEFAULT NULL,
-`LOGO` INT NOT NULL,
-CONSTRAINT FOREIGN KEY(`LOGO`) REFERENCES IMAGES(`IID`),
+`LOGO` VARCHAR(1000) NOT NULL DEFAULT 'http://qdnhdgyix.bkt.clouddn.com/unkown1',
 PRIMARY KEY(`BID`)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
@@ -23,14 +16,13 @@ CREATE TABLE IF NOT EXISTS USER(
 `USERNAME` VARCHAR(50) DEFAULT '未设置昵称！！',
 `PASSWORD` VARCHAR(50) NOT NULL,
 `EMAIL` VARCHAR(50) NOT NULL,
-`HEAD_PORTRAIT` INT DEFAULT 1,
+`HEAD_PORTRAIT` VARCHAR(1000) NOT NULL DEFAULT 'http://qdnhdgyix.bkt.clouddn.com/hp0',
 `ADMIN_PERMISSION` TINYINT(1) DEFAULT 0,
 `STATUS` VARCHAR(5) DEFAULT 'N',
-`CODE` VARCHAR(20) DEFAULT NULL,
+`CODE` VARCHAR(40) DEFAULT NULL,
 `COMMENT` VARCHAR(100) DEFAULT '这个人很懒，什么都没有写',
 `LIKEDTIME` INT DEFAULT 0,
 `MYPOSTLIKEDTIME` INT DEFAULT 0,
-CONSTRAINT FOREIGN KEY(`HEAD_PORTRAIT`) REFERENCES IMAGES(`IID`),
 PRIMARY KEY(`UID`)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
@@ -82,27 +74,20 @@ CONSTRAINT FOREIGN KEY(`PID`) REFERENCES POSTS(`PID`),
 PRIMARY KEY(`FPID`)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
-INSERT INTO IMAGES (`URL`) VALUES
-('https://pic3.zhimg.com/50/v2-e2361d82ce7465808260f87bed4a32d0_qhd.jpg'),
-('http://qdnhdgyix.bkt.clouddn.com/111'),
-('http://qdnhdgyix.bkt.clouddn.com/222'),
-('http://qdnhdgyix.bkt.clouddn.com/333'),
-('http://qdnhdgyix.bkt.clouddn.com/444');
-
 INSERT INTO BLOCKS (`BLOCKNAME`, `LOGO`) VALUES
-('美食', 1),
-('书籍', 1),
-('体育', 1),
-('财经', 1),
-('政治', 1),
-('学习', 1);
+('美食', 'http://qdnhdgyix.bkt.clouddn.com/b1'),
+('书籍', 'http://qdnhdgyix.bkt.clouddn.com/b2'),
+('体育', 'http://qdnhdgyix.bkt.clouddn.com/b3'),
+('财经', 'http://qdnhdgyix.bkt.clouddn.com/b4'),
+('政治', 'http://qdnhdgyix.bkt.clouddn.com/b5'),
+('学习', 'http://qdnhdgyix.bkt.clouddn.com/b6');
 
 INSERT INTO USER (`USERNAME`, `PASSWORD`, `EMAIL`, `HEAD_PORTRAIT`, `ADMIN_PERMISSION`, `STATUS`, `CODE`, `COMMENT`, `LIKEDTIME`, `MYPOSTLIKEDTIME`) VALUES
-('狗管理一号', SHA1('12345678'), '1146186018@qq.com', 2, 1, 'Y', 'QWER', '虽千万人吾亦往矣', 2, 2),
-('狗管理二号', SHA1('87654321'), '814384981@qq.com', 3, 1, 'Y', 'tyui', '海不邀我自来也！！！', 2, 1),
-('贾丁', SHA1('qwertyui'), '814384981@qq.com', 4, 0, 'Y', '1284', '别和我闹了', 2, 3),
-('毕展语', SHA1('11111111'), '814384981@qq.com', 1, 0, 'Y', '1k4g', '让我们一起大喊——666！', 2, 3),
-('李泽宇', SHA1('12345679'), '814384981@qq.com', 1, 0, 'N', 's8cr', '海上升明月', 0, 0);
+('狗管理一号', SHA1('12345678'), '1146186018@qq.com', 'http://qdnhdgyix.bkt.clouddn.com/hp1', 1, 'Y', 'QWER', '虽千万人吾亦往矣', 2, 2),
+('狗管理二号', SHA1('87654321'), '814384981@qq.com', 'http://qdnhdgyix.bkt.clouddn.com/hp2', 1, 'Y', 'tyui', '海不邀我自来也！！！', 2, 1),
+('贾丁', SHA1('qwertyui'), '814384981@qq.com', 'http://qdnhdgyix.bkt.clouddn.com/hp3', 0, 'Y', '1284', '别和我闹了', 2, 3),
+('毕展语', SHA1('11111111'), '814384981@qq.com', 'http://qdnhdgyix.bkt.clouddn.com/hp0', 0, 'Y', '1k4g', '让我们一起大喊——666！', 2, 3),
+('李泽宇', SHA1('12345679'), '814384981@qq.com', 'http://qdnhdgyix.bkt.clouddn.com/hp0', 0, 'N', 's8cr', '海上升明月', 0, 0);
 
 INSERT INTO POSTS (`UID`, `BID`, `TITLE`, `ABSTRACT`, `CONTENT`, `TIME`, `SHOW`, `VIEW`, `LIKED`)VALUES
 (1, 1, '给大家介绍学校周边好吃的', '学校 周边 美食', '想来想去也不知道今天中午吃什么，于是我灵机一动，打算开个帖子说说学校周边的美食', '2020-7-16 14:05:20', 1, 20, 2),
