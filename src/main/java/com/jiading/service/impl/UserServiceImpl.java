@@ -33,16 +33,16 @@ public class UserServiceImpl implements UserService {
             user.setStatus("N");
             userDao.saveUser(user);
             //发送激活邮件
-            String context = "<a href='http://localhost/travel/user/active?code=" + user.getCode() + "&username=" + byUsername + ">点击激活【黑马旅游网】</a>";
+            String context = "点击激活【GitTub】:http://localhost:8080/user/active?code=" + user.getCode();
             MailUtils.sendMail(user.getEmail(), context, "激活邮件");
             return true;
         }
     }
 
     @Override
-    public boolean active(String code, String username) {
+    public boolean active(String code) {
         //1.根据激活码查询用户对象
-        User user = userDao.findByCodeAndUsername(code, username);
+        User user = userDao.findByCode(code);
         //2.调用dao的修改激活状态的方法
         if (user != null) {
             userDao.updateStatus(user);

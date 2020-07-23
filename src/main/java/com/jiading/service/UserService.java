@@ -8,7 +8,7 @@ public interface UserService {
 
     boolean register(User user);
 
-    boolean active(String code, String username);
+    boolean active(String code);
 
     User login(User user);
 

@@ -9,12 +9,12 @@ public class User implements Serializable {
     private int uid;//用户id
     private String username;//用户名，账号
     private String password;//密码
-    private String head_portrait;//头像
+    private String head_portrait="http://qdnhdgyix.bkt.clouddn.com/logo.png";//头像
     private boolean admin_permission;//是否是特权用户，true为特权用户
     private String email;//邮箱
     private String status;//激活状态，Y代表激活，N代表未激活
     private String code;//激活码
-    private String comment;//个人签名
+    private String comment="这个人很懒，什么都没有写";//个人签名
     private int likedTime;//多少人关注了我
     private int myPostsLikedTime;//我的文章被收藏了多少次
 

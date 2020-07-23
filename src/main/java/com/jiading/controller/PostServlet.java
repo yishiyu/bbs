@@ -6,6 +6,7 @@ import com.jiading.service.FavouritePostService;
 import com.jiading.service.PostService;
 import com.jiading.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -111,6 +112,7 @@ public class PostServlet extends BaseServlet {
         if (pageSize != null && pageSize.length() > 0) {
             intPageSize = Integer.parseInt(pageSize);
         }
+
         //调用service查询PageBean对象
         PageBean<Post> pb = postService.pageQueryForSearch(intBid, intCurrentPage, intPageSize, postName);
         writeValue(pb, resp);
@@ -165,7 +167,7 @@ public class PostServlet extends BaseServlet {
             ans = NOTFAVOURITED;
         }
         //测试
-        System.out.println("isFavourite__user:"+user.getUsername()+",pid:"+pid+",ans:"+ans);
+        //System.out.println("isFavourite__user:"+user.getUsername()+",pid:"+pid+",ans:"+ans);
         //
         writeValue(ans, resp);
 
@@ -203,7 +205,7 @@ public class PostServlet extends BaseServlet {
         postService.likedAddOne(pid);
         userService.likedPostAddOneToUserBean(pid);
         //测试
-        System.out.println("user:"+user.getUsername()+",pid:"+pid);
+        //System.out.println("user:"+user.getUsername()+",pid:"+pid);
         //
         writeValue(ResultInfo.getTrueResultInfo(),resp);
     }
@@ -338,6 +340,33 @@ public class PostServlet extends BaseServlet {
         String pid = req.getParameter("pid");
         List<Reply> list = postService.allCommentsInThisPost(pid);
         writeValue(list, resp);
+    }
+    /**
+    * @Description:
+     * 1. currentPage
+     * 2. pageSize
+     * 3. uid
+    * @Param: [req, resp]
+    * @return: void
+    * @Author: JiaDing
+    * @Date: 2020/7/23
+    */
+    @RequestMapping("/allPostsForAnother")
+    public void allPostsForAnother(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        //1. 接受参数
+        String currentPage = req.getParameter("currentPage");
+        String pageSize = req.getParameter("pageSize");
+        String uid=req.getParameter("uid");
+        int intCurrentPage = 1;
+        int intPageSize = 5;//每页显示条数，默认为5条
+        if (currentPage != null && currentPage.length() > 0) {
+            intCurrentPage = Integer.parseInt(currentPage);
+        }
+        if (pageSize != null && pageSize.length() > 0) {
+            intPageSize = Integer.parseInt(pageSize);
+        }
+        PageBean<Post> myPosts = postService.findAllByUidInPages(Integer.valueOf(uid), intCurrentPage, intPageSize);
+        writeValue(myPosts, resp);
     }
 
 }

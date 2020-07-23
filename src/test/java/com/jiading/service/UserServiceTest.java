@@ -55,11 +55,11 @@ public class UserServiceTest extends BaseTest {
         //未激活
 
         System.out.println("未成功激活");
-        System.out.println(userService.active(code,username));
+        System.out.println(userService.active(code));
         //测试成功
         code="s8cr";
         System.out.println("成功激活");
-        System.out.println(userService.active(code,username));
+        System.out.println(userService.active(code));
     }
 
     @Test
